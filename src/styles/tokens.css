@@ -1,0 +1,47 @@
+:root {
+  /* Color */
+  --color-bg: #fafaf9;
+  --color-bg-subtle: #f2f4f4;
+  --color-surface: #ffffff;
+  --color-text: #1f2a30;
+  --color-text-muted: #5b6870;
+  --color-border: #e2e6e7;
+  --color-accent: #0f5257;
+  --color-accent-strong: #0b3f43;
+  --color-accent-soft: #e6efef;
+
+  /* Typography */
+  --font-sans: 'Inter', 'Noto Sans JP', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic UI',
+    Meiryo, sans-serif;
+  --font-mono: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: 1.75rem;
+  --text-3xl: clamp(2rem, 1.4rem + 2.6vw, 3rem);
+
+  /* Layout */
+  --container: 1080px;
+  --measure: 680px;
+  --gutter: 20px;
+  --section-space: 72px;
+  --radius: 10px;
+  --radius-sm: 6px;
+  --header-height: 60px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --gutter: 32px;
+    --section-space: 104px;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --section-space: 120px;
+  }
+}

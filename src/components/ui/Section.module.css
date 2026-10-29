@@ -1,0 +1,40 @@
+.section {
+  padding-block: var(--section-space);
+}
+
+.subtle {
+  composes: section;
+  background: var(--color-bg-subtle);
+  border-block: 1px solid var(--color-border);
+}
+
+.header {
+  max-width: var(--measure);
+  margin-bottom: 40px;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: var(--text-2xl);
+  letter-spacing: 0.06em;
+}
+
+.title::before {
+  content: '';
+  width: 24px;
+  height: 2px;
+  background: var(--color-accent);
+}
+
+.lead {
+  margin-top: 12px;
+  color: var(--color-text-muted);
+}
+
+@media (min-width: 768px) {
+  .header {
+    margin-bottom: 56px;
+  }
+}

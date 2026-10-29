@@ -1,0 +1,66 @@
+.hero {
+  padding-block: 64px 8px;
+}
+
+.role {
+  color: var(--color-accent);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  letter-spacing: 0.16em;
+}
+
+.name {
+  margin-top: 12px;
+  font-size: var(--text-3xl);
+  letter-spacing: 0.12em;
+}
+
+.intro {
+  display: grid;
+  gap: 16px;
+  max-width: var(--measure);
+  margin-top: 28px;
+  color: var(--color-text);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 36px;
+}
+
+.primary {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 6px 20px;
+  border-radius: var(--radius-sm);
+  background: var(--color-accent);
+  color: #fff;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 0.15s ease;
+}
+
+.primary:hover {
+  background: var(--color-accent-strong);
+  color: #fff;
+}
+
+@media (min-width: 768px) {
+  .hero {
+    padding-block: 120px 16px;
+  }
+
+  .intro {
+    font-size: var(--text-lg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .primary {
+    transition: none;
+  }
+}

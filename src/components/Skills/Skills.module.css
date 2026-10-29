@@ -1,0 +1,49 @@
+.layout {
+  display: grid;
+  gap: 40px;
+}
+
+.blockTitle {
+  margin-bottom: 16px;
+  font-size: var(--text-lg);
+}
+
+.groups {
+  display: grid;
+  gap: 16px;
+  margin: 0;
+}
+
+.group {
+  display: grid;
+  gap: 8px;
+}
+
+.groupTitle {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  font-weight: 500;
+}
+
+.groupItems {
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .group {
+    grid-template-columns: 9rem 1fr;
+    align-items: start;
+    gap: 16px;
+  }
+
+  .groupTitle {
+    padding-top: 2px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    gap: 56px;
+  }
+}

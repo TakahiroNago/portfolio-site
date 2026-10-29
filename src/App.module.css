@@ -1,0 +1,18 @@
+.subheading {
+  margin-top: 72px;
+  margin-bottom: 24px;
+  font-size: var(--text-lg);
+  color: var(--color-text);
+}
+
+.projectGrid {
+  display: grid;
+  gap: 24px;
+}
+
+@media (min-width: 768px) {
+  .projectGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px;
+  }
+}
