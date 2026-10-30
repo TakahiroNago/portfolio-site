@@ -1,5 +1,21 @@
 .hero {
-  padding-block: 64px 8px;
+  padding-block: 40px 8px;
+}
+
+.inner {
+  display: grid;
+  gap: 28px;
+}
+
+/* 見出しを先に読み上げるためDOM上は本文が先。スマホでは画像を上に表示する */
+.portrait {
+  order: -1;
+  width: 176px;
+  height: auto;
+  /* 画像の背景色（#faf9f3前後）とページ背景の差で四角い縁が見えないよう、上と左右の端をぼかす */
+  mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent),
+    linear-gradient(to bottom, transparent, #000 6%);
+  mask-composite: intersect;
 }
 
 .role {
@@ -51,7 +67,18 @@
 
 @media (min-width: 768px) {
   .hero {
-    padding-block: 120px 16px;
+    padding-block: 96px 16px;
+  }
+
+  .inner {
+    grid-template-columns: minmax(0, 1fr) clamp(240px, 30vw, 360px);
+    align-items: center;
+    gap: 48px;
+  }
+
+  .portrait {
+    order: 0;
+    width: 100%;
   }
 
   .intro {

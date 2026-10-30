@@ -18,6 +18,12 @@ export const ja: SiteContent = {
       '実務では、C/C++による産業機器の制御ソフトウェアや、画像処理・外観検査システムの開発に携わってきました。Tauri（React, Rust）を用いた外観検査装置向けアプリケーションでは、制御プログラムとUIの両方を担当しています。',
       '個人開発では、React、Go、Laravel（PHP）を用いてWebアプリケーションやAPIを開発しています。C++の画像処理エンジンをWebアプリ・API・クラウド環境と組み合わせ、設計から実装、デプロイ、運用まで一通り取り組んでいます。',
     ],
+    portrait: {
+      src: '/images/face.webp',
+      alt: '名合 貴洋のポートレートイラスト',
+      width: 1254,
+      height: 1254,
+    },
     github: { label: 'GitHub', href: 'https://github.com/TakahiroNago' },
   },
   sections: {

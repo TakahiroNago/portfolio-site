@@ -73,6 +73,7 @@ export type SiteContent = {
     name: string
     role: string
     intro: string[]
+    portrait: Screenshot
     github: ExternalLink
   }
   sections: {
