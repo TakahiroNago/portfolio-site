@@ -86,6 +86,12 @@ export const ja: SiteContent = {
       { label: 'GitHub（Webフロントエンド）', href: 'https://github.com/TakahiroNago/svg-web' },
       { label: 'GitHub（C++エンジン・API）', href: 'https://github.com/TakahiroNago/svg-app' },
     ],
+    screenshot: {
+      src: '/images/projects/svg-app.png',
+      alt: 'SVG Appの画面。サンプル画像の元画像と変換後のSVGを左右に並べて比較でき、右側のパネルで用途や色数を設定できる。',
+      width: 1440,
+      height: 900,
+    },
     featureGroups: [
       {
         title: '画像変換エンジン',
