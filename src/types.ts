@@ -50,7 +50,8 @@ export type FeaturedProject = Project & {
     title: string
     lead: string
     paths: ArchitecturePath[]
-    sharedCore: string
+    /** 複数の経路で共通して使う部分（例: 変換コア、ドメインロジック） */
+    sharedCore?: { label: string; value: string }
   }
 }
 
@@ -88,12 +89,11 @@ export type SiteContent = {
     viewProjects: string
     featured: string
     architecture: string
-    sharedCore: string
     techStack: string
     responsibilities: string
     externalLink: string
   }
-  featuredProject: FeaturedProject
+  featuredProjects: FeaturedProject[]
   projects: Project[]
   experience: {
     work: ExperienceItem[]

@@ -44,7 +44,7 @@ export function FeaturedProject({ project, labels }: Props) {
         </figure>
       )}
 
-      <ArchitectureDiagram architecture={project.architecture} labels={labels} />
+      <ArchitectureDiagram projectId={project.id} architecture={project.architecture} labels={labels} />
 
       <div className={styles.features}>
         {project.featureGroups.map((group) => (
