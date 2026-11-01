@@ -306,7 +306,7 @@ export const ja: SiteContent = {
       ],
       screenshot: {
         src: '/images/projects/paintmix.png',
-        alt: 'PaintMixの画面。2色の絵の具を選び、混合比と白を混ぜる量のスライダーで混色結果を確認できる。',
+        alt: 'PaintMixの画面。左側で2色の絵の具と混合比・白を混ぜる量を調整し、右側に混色結果の色とHEX値、配合レシピが表示されている。',
         width: 1000,
         height: 640,
       },
