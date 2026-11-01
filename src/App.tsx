@@ -26,7 +26,11 @@ function App() {
         <Hero profile={profile} externalLabel={labels.externalLink} projectsLabel={labels.viewProjects} />
 
         <Section id="projects" title={sections.projects.title} lead={sections.projects.lead}>
-          <FeaturedProject project={content.featuredProject} labels={labels} />
+          <div className={styles.featuredList}>
+            {content.featuredProjects.map((project) => (
+              <FeaturedProject key={project.id} project={project} labels={labels} />
+            ))}
+          </div>
 
           <h3 className={styles.subheading}>{sections.projects.otherTitle}</h3>
           <div className={styles.projectGrid}>

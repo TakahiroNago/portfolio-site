@@ -2,17 +2,21 @@ import type { FeaturedProject, SiteContent } from '../../types.ts'
 import styles from './ArchitectureDiagram.module.css'
 
 type Props = {
+  /** 見出しの id を一意にするために使う（注目のプロジェクトが複数あるため） */
+  projectId: string
   architecture: FeaturedProject['architecture']
   labels: SiteContent['labels']
 }
 
 // 処理の流れを縦方向のステップで表す。画像ではなくHTMLで描くため、文言はデータから差し替えられる。
-export function ArchitectureDiagram({ architecture, labels }: Props) {
+export function ArchitectureDiagram({ projectId, architecture, labels }: Props) {
+  const titleId = `${projectId}-architecture-title`
+
   return (
-    <section className={styles.diagram} aria-labelledby="architecture-title">
+    <section className={styles.diagram} aria-labelledby={titleId}>
       <div className={styles.header}>
         <p className={styles.eyebrow}>{labels.architecture}</p>
-        <h4 id="architecture-title" className={styles.title}>
+        <h4 id={titleId} className={styles.title}>
           {architecture.title}
         </h4>
         <p className={styles.lead}>{architecture.lead}</p>
@@ -42,10 +46,12 @@ export function ArchitectureDiagram({ architecture, labels }: Props) {
         ))}
       </div>
 
-      <p className={styles.core}>
-        <span className={styles.coreLabel}>{labels.sharedCore}</span>
-        <span>{architecture.sharedCore}</span>
-      </p>
+      {architecture.sharedCore && (
+        <p className={styles.core}>
+          <span className={styles.coreLabel}>{architecture.sharedCore.label}</span>
+          <span>{architecture.sharedCore.value}</span>
+        </p>
+      )}
     </section>
   )
 }
