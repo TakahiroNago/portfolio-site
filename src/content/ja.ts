@@ -343,7 +343,7 @@ export const ja: SiteContent = {
       ],
       screenshot: {
         src: '/images/projects/zen.png',
-        alt: 'ZENのトップページ。「ゆっくりと心を見つめて」という見出しと、AI禅師に相談するボタンが表示されている。',
+        alt: 'ZENのトップページ。「いま、心にあることを聞かせてください」という見出しの下に、思いを入力する欄とヒントの選択肢、「禅師に相談する」ボタンが表示されている。',
         width: 1440,
         height: 900,
       },
