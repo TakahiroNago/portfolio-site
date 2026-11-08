@@ -59,6 +59,130 @@ export const ja: SiteContent = {
   },
   featuredProjects: [
     {
+      id: 'secureflow',
+      name: 'SecureFlow AI',
+      tagline: 'AIが業務を分析して計画を提案し、人間の承認を経て実行するセキュリティ管理プラットフォーム',
+      summary:
+        '業務内容の依頼文からAIがワークフロー（実行計画）を提案し、入力と出力の検査、人間による承認、実行前の再検証、改ざんを検出できる監査ログを経て実行する、組織向けのWebアプリケーションです。AIにはツール実行・DB・外部通信の権限を与えず、提案のみを行わせる設計にしています。Laravel・PostgreSQL・Redis・Reactで実装し、要件定義・脅威モデル・設計書・テスト戦略を文書化しながら、工程ごとにテスト・静的解析・セキュリティスキャンをCIで通して開発を進めています。現在は開発環境で動作し、AIは既定でモック、実行は模擬のみです（公開デモはありません）。',
+      tags: [
+        'PHP',
+        'Laravel',
+        'Laravel Sanctum',
+        'PostgreSQL',
+        'Redis',
+        'React',
+        'TypeScript',
+        'Vite',
+        'Tailwind CSS',
+        'TanStack Query',
+        'Zod',
+        'Docker Compose',
+        'Nginx',
+        'Pest',
+        'Larastan',
+        'Vitest',
+        'Playwright',
+        'Semgrep',
+        'Trivy',
+        'gitleaks',
+        'GitHub Actions',
+        'OpenAI API',
+      ],
+      links: [{ label: 'GitHub', href: 'https://github.com/TakahiroNago/secureflow-ai' }],
+      screenshot: {
+        src: '/images/projects/secureflow.png',
+        alt: 'SecureFlow AIの承認画面。申請者、リビジョン、ポリシーのバージョン、承認ハッシュ、検査の結果に続き、提案されたタスクの処理内容・使用するAI機能・対象データ・必要な権限・実行による影響が表示され、コメント欄と承認のボタンがある。',
+        width: 1440,
+        height: 930,
+      },
+      featureGroups: [
+        {
+          title: '安全設計の原則',
+          items: [
+            'AIは提案のみを行い、ツール実行・DB・外部通信の権限を持たない（最終防御層）',
+            'AIの入出力は常に未信頼データとして扱い、出力はJSONスキーマ・操作の許可リスト・機密情報・HTMLの検証を通す',
+            '禁止操作の実行ハンドラをコード上に存在させない',
+            '認可はすべてのAPIで組織・ユーザー・ロールに基づいて行い、組織をまたぐデータの参照を防ぐ',
+          ],
+        },
+        {
+          title: '入力の検査',
+          items: [
+            '個人情報はマスキングして続行し、認証・秘密情報（APIキーなど）は処理を停止',
+            'プロンプトインジェクションの検出（High / Critical は停止、Medium は警告、Low は記録）と、検出が完全ではないことの明示',
+            '正規化（Unicode NFKC、ゼロ幅文字の除去など）を行いつつ、原文の該当箇所を画面で示せる対応表を保持',
+            '送信前の確認で、マスク後の文面を利用者が確認できる',
+          ],
+        },
+        {
+          title: '承認と実行',
+          items: [
+            '提案された計画は、実行する処理・使用するAI機能・対象データ・必要な権限・実行による影響を人間が確認してから承認',
+            '承認は計画のSHA-256ハッシュに紐付け、自己承認は禁止。承認後の編集は再承認が必要',
+            '実行前に承認ハッシュとポリシーを再検証し、Idempotency-Keyで二重実行を防止',
+            '実行は模擬のみで、外部への操作は行わない',
+          ],
+        },
+        {
+          title: '監査ログ',
+          items: [
+            'ログイン、分析、編集、承認、実行などの操作を組織ごとのハッシュチェーンで記録し、改ざんを検出',
+            'DB関数からのみ追記でき、更新・削除はトリガーで禁止。画面とコマンドから検証できる',
+            'DBロールを所有者（マイグレーション）・アプリ（DMLのみ）・テストに分離',
+          ],
+        },
+        {
+          title: 'テスト・CI',
+          items: [
+            'Pest（セキュリティテストを独立したグループに分離）、Larastan（レベル8）、Pint、Vitest、ESLint、カバレッジの目標',
+            'PlaywrightによるE2Eテストを、ビルド済みの画面に対して実ブラウザ3種（Chromium / Firefox / WebKit）で実行',
+            'アプリ内のセキュリティ自己診断（26ケース）を管理画面から実行でき、結果をダッシュボードに表示',
+            'GitHub Actionsの7つのジョブ（秘密情報スキャン、バックエンド、フロントエンド、全サービス起動、E2E、セキュリティテスト、Semgrep / Trivy）をPull Requestごとに実行し、すべて通過したものだけをmainにマージ',
+            'Redis・PostgreSQL・workerの実際の障害を再現する検証スクリプトと、変異試験によるテストの有効性の確認',
+          ],
+        },
+        {
+          title: '開発の進め方',
+          items: [
+            '要件定義・脅威モデル・セキュリティ設計・DB設計・API設計・テスト戦略を文書化し、工程ごとに更新',
+            'AIコーディングエージェント（Claude Code）を活用し、変更してはならない安全原則を明文化したうえで、各工程の設計判断・承認・レビューを自分で行う進め方',
+            '工程ごとにブランチとPull Requestを分け、CIの全チェックを通してからマージ',
+          ],
+        },
+      ],
+      architecture: {
+        title: '提案から実行までの経路',
+        lead: 'AIの提案は検査を通ってから保存され、人間の承認を経て、実行の直前にもう一度検証されます。すべての操作が監査ログに残ります。',
+        paths: [
+          {
+            title: '分析（AIの提案）',
+            description: 'AIに渡るのはマスク済みの入力だけで、AIからの出力は検証に通ったものだけが保存されます。',
+            steps: [
+              { label: 'ブラウザ', detail: 'React SPA', via: '同一オリジン / Cookie セッション' },
+              { label: 'Laravel API', detail: 'Nginx経由。認証・CSRF・認可' },
+              { label: '入力検査', detail: 'マスキング・秘密情報・インジェクション検出' },
+              { label: 'AIプロバイダ', detail: '提案のみ（既定はモック）', via: 'worker（キュー）' },
+              { label: '出力検証', detail: 'スキーマ・許可リスト・機密情報・HTML除去' },
+              { label: 'PostgreSQL', detail: 'ワークフローとして保存' },
+            ],
+          },
+          {
+            title: '承認と実行',
+            description: '承認した内容と実行する内容が同じであることを、ハッシュで保証します。',
+            steps: [
+              { label: '申請者', detail: '計画を確認して承認を依頼' },
+              { label: '管理者', detail: '承認画面で内容を確認（自己承認は不可）' },
+              { label: '承認', detail: '計画のSHA-256ハッシュに紐付け' },
+              { label: '実行前の再検証', detail: 'ハッシュ・ポリシー・二重実行の確認' },
+              { label: '模擬実行', detail: '外部への操作は行わない' },
+              { label: '監査ログ', detail: 'ハッシュチェーンで記録' },
+            ],
+          },
+        ],
+        sharedCore: { label: '共通の記録', value: '監査ログ（組織ごとのハッシュチェーン。DB関数からのみ追記、更新・削除はトリガーで禁止）' },
+      },
+    },
+    {
       id: 'projectflow',
       name: 'ProjectFlow',
       tagline: '個人開発者・小規模チーム向けのプロジェクト管理Webアプリケーション',
@@ -374,6 +498,12 @@ export const ja: SiteContent = {
     ],
     personal: [
       {
+        title: 'AIを安全に業務へ組み込むWebアプリケーション開発',
+        description:
+          'AIが業務を分析して計画を提案し、入力と出力の検査、人間の承認、実行前の再検証、改ざんを検出できる監査ログを経て実行するプラットフォームを、Laravel・PostgreSQL・Redis・Reactで開発しています。脅威モデルとセキュリティ設計を文書化し、セキュリティテスト・SAST・脆弱性スキャン・E2EテストをCIで必須化しています。',
+        tags: ['Laravel', 'PostgreSQL', 'Redis', 'React', 'TypeScript', 'Playwright', 'Semgrep', 'Trivy', 'GitHub Actions'],
+      },
+      {
         title: 'Webアプリケーション・API開発',
         description:
           'React / TypeScriptによるフロントエンド、Next.jsとPostgreSQLによるWebアプリケーション、Go REST APIとgRPCによるバックエンド、Laravelによるサーバーサイドアプリケーションを開発しています。',
@@ -403,10 +533,10 @@ export const ja: SiteContent = {
       { title: 'フロントエンド', items: ['React', 'Next.js', 'Vite', 'WebAssembly', 'Web Worker', 'Tailwind CSS', 'shadcn/ui'] },
       {
         title: 'バックエンド',
-        items: ['Go REST API', 'gRPC', 'Protocol Buffers', 'Laravel', 'Next.js Server Actions', 'Better Auth', 'OpenAI API'],
+        items: ['Go REST API', 'gRPC', 'Protocol Buffers', 'Laravel', 'Laravel Sanctum', 'Next.js Server Actions', 'Better Auth', 'OpenAI API'],
       },
-      { title: 'データベース', items: ['PostgreSQL', 'Prisma', 'MySQL'] },
-      { title: 'テスト', items: ['Vitest', 'Playwright', 'axe-core'] },
+      { title: 'データベース', items: ['PostgreSQL', 'Redis', 'Prisma', 'MySQL'] },
+      { title: 'テスト・セキュリティ検査', items: ['Pest', 'Larastan', 'Vitest', 'Playwright', 'axe-core', 'Semgrep', 'Trivy', 'gitleaks'] },
       { title: '画像処理', items: ['OpenCV'] },
       {
         title: 'インフラ・運用',
