@@ -4,6 +4,7 @@ import { Footer } from './components/Footer/Footer.tsx'
 import { Header } from './components/Header/Header.tsx'
 import { Hero } from './components/Hero/Hero.tsx'
 import { Links } from './components/Links/Links.tsx'
+import { Oss } from './components/Oss/Oss.tsx'
 import { ProjectCard } from './components/ProjectCard/ProjectCard.tsx'
 import { Skills } from './components/Skills/Skills.tsx'
 import { Section } from './components/ui/Section.tsx'
@@ -46,20 +47,19 @@ function App() {
             personal={content.experience.personal}
             workTitle={sections.experience.workTitle}
             personalTitle={sections.experience.personalTitle}
-            responsibilitiesLabel={labels.responsibilities}
-            techStackLabel={labels.techStack}
+            labels={labels}
           />
         </Section>
 
-        <Section id="skills" title={sections.skills.title} lead={sections.skills.lead}>
-          <Skills
-            work={content.skills.work}
-            personal={content.skills.personal}
-            personalTitle={sections.experience.personalTitle}
-          />
+        <Section id="oss" title={sections.oss.title} lead={sections.oss.lead}>
+          <Oss items={content.oss} statusLabel={labels.status} externalLabel={labels.externalLink} />
         </Section>
 
-        <Section id="links" title={sections.links.title} lead={sections.links.lead} tone="subtle">
+        <Section id="skills" title={sections.skills.title} lead={sections.skills.lead} tone="subtle">
+          <Skills tiers={content.skills.tiers} />
+        </Section>
+
+        <Section id="links" title={sections.links.title} lead={sections.links.lead}>
           <Links github={profile.github} externalLabel={labels.externalLink} />
         </Section>
       </main>

@@ -46,7 +46,33 @@
   font-size: var(--text-sm);
 }
 
-.responsibilities {
+.meta {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-subtle);
+  font-size: var(--text-sm);
+}
+
+.metaRow {
+  display: grid;
+  grid-template-columns: 3.5em 1fr;
+  gap: 8px;
+}
+
+.metaRow dt {
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.metaRow dd {
+  margin: 0;
+}
+
+.responsibilities,
+.outcome {
   display: flex;
   flex-wrap: wrap;
   gap: 2px 12px;
@@ -54,18 +80,25 @@
   font-size: var(--text-sm);
 }
 
-.responsibilities dt {
+.responsibilities dt,
+.outcome dt {
   color: var(--color-accent);
   font-weight: 500;
 }
 
-.responsibilities dd {
+.responsibilities dd,
+.outcome dd {
   margin: 0;
+}
+
+.outcome {
+  flex-direction: column;
+  gap: 2px;
 }
 
 @media (min-width: 1024px) {
   .groups {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
     gap: 40px;
   }
 }

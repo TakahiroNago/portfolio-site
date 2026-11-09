@@ -2,12 +2,14 @@ import type { SiteContent } from '../types.ts'
 
 // 掲載内容はすべてこのファイルで管理する。
 // 公開リポジトリのREADME・設定ファイルと、本人から提供された情報で確認できる内容のみを記載する。
+// 実務・個人開発・OSS は分けて記載し、スキルは「設計・実装できる／実務で使用／個人開発・学習で使用」の3区分で示す。
 
 export const ja: SiteContent = {
   lang: 'ja',
   nav: [
     { id: 'projects', label: 'プロジェクト' },
     { id: 'experience', label: '経歴' },
+    { id: 'oss', label: 'OSS' },
     { id: 'skills', label: 'スキル' },
     { id: 'links', label: 'リンク' },
   ],
@@ -15,8 +17,8 @@ export const ja: SiteContent = {
     name: '名合 貴洋',
     role: 'ソフトウェアエンジニア',
     intro: [
-      '実務では、C/C++による産業機器の制御ソフトウェアや、画像処理・外観検査システムの開発に携わってきました。Tauri（React, Rust）を用いた外観検査装置向けアプリケーションでは、制御プログラムとUIの両方を担当しています。',
-      '個人開発では、React、Next.js、Go、Laravel（PHP）を用いてWebアプリケーションやAPIを開発しています。C++の画像処理エンジンをWebアプリ・API・クラウド環境と組み合わせ、設計から実装、デプロイ、運用まで一通り取り組んでいます。',
+      '実務では、C/C++による船舶制御システムの改修と、操船システムの新規開発（リーダー）を経て、Tauri（Rust）によるロボットアーム制御パッケージと外観検査装置ソフトウェアを、プログラム担当1名として設計から実装まで担当しました（2023年10月〜2026年8月）。',
+      '個人開発では、AIの提案を人間の承認と監査ログのもとで実行するセキュリティ管理プラットフォームをはじめ、Webアプリケーション・API・C++画像処理エンジンのWeb活用に取り組み、設計からデプロイ・運用まで一通り手がけています。Rustのライブラリ（egui、wry）には修正PRを提出しています。',
     ],
     portrait: {
       src: '/images/face.webp',
@@ -34,13 +36,17 @@ export const ja: SiteContent = {
     },
     experience: {
       title: '経歴',
-      lead: '実務での経験と、個人開発で取り組んでいる内容を分けて記載しています。',
-      workTitle: '実務経験',
-      personalTitle: '個人開発',
+      lead: '実務での経験と、個人開発で取り組んでいる内容を分けて記載しています。実務は案件ごとに期間・規模・役割を記載しています。',
+      workTitle: '実務経験（2023年10月〜2026年8月）',
+      personalTitle: '個人開発（2026年9月〜）',
+    },
+    oss: {
+      title: 'OSS活動',
+      lead: '業務や個人開発で遭遇した不具合を、原因を特定して上流へ報告・修正しています。いずれも2026年11月時点でレビュー中です。',
     },
     skills: {
       title: 'スキル',
-      lead: '実務と個人開発のそれぞれで、実際に使用した技術です。',
+      lead: '「自力で設計・実装できる」「実務で使用した」「個人開発・学習で使用した」の3つに分けて記載しています。1つの技術が複数の区分に入ることがあります。',
     },
     links: {
       title: 'リンク',
@@ -55,6 +61,12 @@ export const ja: SiteContent = {
     architecture: 'ARCHITECTURE',
     techStack: '使用技術',
     responsibilities: '担当工程',
+    outcome: '成果',
+    period: '期間',
+    company: '所属',
+    team: '規模',
+    role: '役割',
+    status: '状況',
     externalLink: '新しいタブで開きます',
   },
   featuredProjects: [
@@ -478,29 +490,106 @@ export const ja: SiteContent = {
   experience: {
     work: [
       {
-        title: '産業機器の制御ソフトウェア開発',
+        title: '外観検査装置の画像認識プログラムとUIの作成',
         description:
-          'C/C++による産業機器の制御ソフトウェアを開発しました。Rocky Linux 9のOSインストールからDockerの導入まで一貫して開発環境の構築を行い、制御システム（C++）とUI（Python）をそれぞれ別のコンテナで管理していました。',
-        tags: ['C', 'C++', 'Python', 'Rocky Linux 9', 'Docker / Docker Compose'],
-      },
-      {
-        title: '画像処理・外観検査システムの開発',
-        description: 'C++による画像処理と外観検査システムを開発しました。',
-        tags: ['C++', '画像処理'],
-      },
-      {
-        title: '外観検査装置向けデスクトップアプリケーション開発',
-        description:
-          'Tauriを用いて、外観検査装置向けのソフトウェアを開発しました。制御プログラムとUIの両方を担当しました。',
+          'プリント基板のパターン印刷を印刷前後で比較して欠陥を検出する外観検査装置の、画像認識プログラムと操作UIを開発しました。課題の把握から機能検討・設計・実装・テストまでを担当しています。',
+        meta: {
+          period: '2025年5月〜2026年8月',
+          company: 'マイクロクラフト株式会社',
+          team: '4名（プログラム担当は本人のみ。他は機械・電気制御）',
+          role: 'ソフトウェア担当（設計〜実装を単独で担当）',
+        },
         responsibilities: ['課題の把握', '機能検討', '設計', '実装', 'テスト'],
-        tags: ['Tauri', 'Rust', 'React', 'TypeScript', 'Vite', 'Vue.js'],
+        outcome:
+          '印刷前後の比較に用いる画像処理を、既存のC++実装の約14秒からRust実装で約3秒に短縮（概算）。処理の並列化、撮影途中からの部分的な処理の開始、画像ファイルの読み書きをメモリ共有に置き換えてI/Oを削減。',
+        tags: ['Tauri', 'Rust', 'TypeScript', 'React', 'C', 'C++', 'HALCON', 'Git', 'Windows'],
+      },
+      {
+        title: 'ロボットアーム制御パッケージの作成',
+        description:
+          'プリント基板を搬入カートから基板検査機へロードし、検査完了後にアンロードして、検査結果に基づいた位置へ移動させるロボットアーム制御システムを開発しました。基板検査機との連携部分も含めて設計・開発しています。',
+        meta: {
+          period: '2025年5月〜2026年8月',
+          company: 'マイクロクラフト株式会社',
+          team: '3名（プログラム担当は本人のみ。他は機械・電気制御）',
+          role: 'ソフトウェア担当（設計〜実装を単独で担当）',
+        },
+        tags: ['Tauri', 'Rust', 'TypeScript', 'Vue.js', 'C', 'C++', 'Git', 'Windows'],
+      },
+      {
+        title: '操船システムの新規開発',
+        description:
+          '既存の自動操船装置をベースに、Dockerを利用した操船システムを新規開発しました。2024年3月の通信システムの概要設計から着手し、要件定義・設計・開発に加え、進捗管理、GitLabでのコードレビュー・マージを担当しました。Rocky Linux 9のOSインストールからDockerの導入まで開発環境の構築を一貫して行い、制御システム（C++）とUI（Python）を別のコンテナで管理する構成を設計しています。GitLabによるバージョン管理は組織内へ新規に導入しました。',
+        meta: {
+          period: '2024年3月〜2025年4月',
+          company: '株式会社エスユーエス（船舶制御装置メーカーに常駐）',
+          team: '2名（要件定義・設計）〜6名（開発）',
+          role: 'リーダー',
+        },
+        responsibilities: ['要件定義', '設計', '実装', '進捗管理', 'コードレビュー'],
+        tags: ['C', 'C++', 'Python', 'Docker / Docker Compose', 'Rocky Linux 9', 'Ubuntu', 'Git / GitLab', 'Windows'],
+      },
+      {
+        title: '船舶ディーゼルエンジン性能測定システムの改修・新機能追加',
+        description: '既存の性能測定システム（Windowsデスクトップアプリ）の改修と新機能の追加を行いました。新機能の詳細設計・開発・テストを担当しています。',
+        meta: {
+          period: '2024年4月〜2024年11月',
+          company: '株式会社エスユーエス（船舶制御装置メーカーに常駐）',
+          team: '3名',
+          role: 'メンバー',
+        },
+        tags: ['C++', 'C++ Builder', 'Windows'],
+      },
+      {
+        title: '自動船位保持システム（DPS）の改修・調整・実装',
+        description: '探査船向けに、既存の自動船位保持システムをベースとしたシステムの改修・調整・実装を行いました。開発・テストを担当しています。',
+        meta: {
+          period: '2024年2月〜2024年7月',
+          company: '株式会社エスユーエス（船舶制御装置メーカーに常駐）',
+          team: '4名',
+          role: 'メンバー',
+        },
+        tags: ['C', 'C++', 'Cygwin', 'iTron OS'],
+      },
+      {
+        title: '自動操船装置の改修・調整・実装',
+        description: '民間フェリー向けに、既存の自動操船装置をベースとしたシステムの改修・調整・実装を行いました。開発・テストを担当しています。',
+        meta: {
+          period: '2024年3月〜2024年5月',
+          company: '株式会社エスユーエス（船舶制御装置メーカーに常駐）',
+          team: '4名',
+          role: 'メンバー',
+        },
+        tags: ['C', 'C++', 'Cygwin', 'iTron OS'],
+      },
+      {
+        title: '操艦システムの改修・調整・実装',
+        description: '新造船向けに、既存の操艦（船操縦制御）システムをベースとしたシステムの改修・調整・実装を行いました。プロジェクト中盤から参加し、要件定義は担当していません。',
+        meta: {
+          period: '2023年10月〜2024年3月',
+          company: '株式会社エスユーエス（船舶制御装置メーカーに常駐）',
+          team: '5名',
+          role: 'メンバー',
+        },
+        tags: ['C', 'C++', 'Cygwin', 'iTron OS', 'Visual Studio Code', 'Windows'],
+      },
+      {
+        title: '船体姿勢シミュレーターのVB.NETへのリプレイス・機能追加',
+        description: '積荷・荷下ろし時の船体姿勢シミュレーター（Windowsデスクトップアプリ）を、既存のC++実装からVB.NETへリプレイスし、機能を追加しました。プロジェクト中盤から参加し、詳細再設計・開発・テストを担当しています。',
+        meta: {
+          period: '2023年10月〜2024年2月',
+          company: '株式会社エスユーエス（船舶制御装置メーカーに常駐）',
+          team: '4名',
+          role: 'メンバー',
+        },
+        tags: ['VB.NET', 'Visual Studio', 'Windows'],
       },
     ],
     personal: [
       {
         title: 'AIを安全に業務へ組み込むWebアプリケーション開発',
         description:
-          'AIが業務を分析して計画を提案し、入力と出力の検査、人間の承認、実行前の再検証、改ざんを検出できる監査ログを経て実行するプラットフォームを、Laravel・PostgreSQL・Redis・Reactで開発しています。脅威モデルとセキュリティ設計を文書化し、セキュリティテスト・SAST・脆弱性スキャン・E2EテストをCIで必須化しています。',
+          'AIが業務を分析して計画を提案し、入力と出力の検査、人間の承認、実行前の再検証、改ざんを検出できる監査ログを経て実行するプラットフォーム（SecureFlow AI）を、Laravel・PostgreSQL・Redis・Reactで開発し、MVPを完成させました。脅威モデルとセキュリティ設計を文書化し、セキュリティテスト・SAST・脆弱性スキャン・E2EテストをCIで必須化しています。',
         tags: ['Laravel', 'PostgreSQL', 'Redis', 'React', 'TypeScript', 'Playwright', 'Semgrep', 'Trivy', 'GitHub Actions'],
       },
       {
@@ -518,34 +607,128 @@ export const ja: SiteContent = {
       {
         title: 'インフラ・デプロイ・運用',
         description:
-          'Docker Composeによる環境構築、AWS EC2・VPS・Cloudflare Pages・Vercelへのデプロイ、GitHub ActionsによるCI/CD、承認付きのDBマイグレーション、CloudWatch・SNSによる監視・通知に取り組んでいます。',
+          'Docker Composeによる環境構築、AWS EC2・VPS・Cloudflare Pages・Vercelへのデプロイ、GitHub ActionsによるCI/CD、承認付きのDBマイグレーション、CloudWatch・SNSによる監視・通知、本番DBの自動バックアップと復元検証に取り組んでいます。',
         tags: ['Docker', 'AWS', 'Nginx', 'GitHub Actions', 'Cloudflare Pages', 'Vercel'],
       },
     ],
   },
-  skills: {
-    work: {
-      title: '実務で使用',
-      items: ['C', 'C++', 'Python', '画像処理', 'Tauri', 'Rust','React', 'TypeScript', 'Vue.js', 'Vite', 'Linux（Rocky Linux 9）', 'Docker / Docker Compose'],
+  oss: [
+    {
+      repository: 'emilk/egui',
+      kind: 'PR',
+      title: 'システムフォントから全角英数字・CJK約物が欠落する問題の修正',
+      description: 'Rust製の即時モードGUIライブラリ。日本語環境で全角形（Fullwidth Forms）とCJKの句読点がシステムフォントから読み込まれない問題を修正しました。',
+      href: 'https://github.com/emilk/egui/pull/8849',
+      status: '提出済み・レビュー中（2026年11月）',
     },
-    personal: [
-      { title: '言語', items: ['C++20', 'TypeScript', 'Go', 'PHP'] },
-      { title: 'フロントエンド', items: ['React', 'Next.js', 'Vite', 'WebAssembly', 'Web Worker', 'Tailwind CSS', 'shadcn/ui'] },
+    {
+      repository: 'tauri-apps/wry',
+      kind: 'PR',
+      title: 'Windowsで WM_SETFOCUS 時のWebViewへのフォーカス移動を遅延させる修正',
+      description: 'TauriのクロスプラットフォームWebViewライブラリ。Windowsでフォーカス取得時にWebViewへ即座にフォーカスを移すことで起きる不具合を修正しました。',
+      href: 'https://github.com/tauri-apps/wry/pull/1924',
+      status: '提出済み・レビュー中（2026年11月）',
+    },
+    {
+      repository: 'MicrosoftEdge/WebView2Feedback',
+      kind: 'Issue',
+      title: '同一プロセス内の2つのWebView2ウィンドウを切り替えるとIMEの変換候補UIが画面左上へ外れる不具合の報告',
+      description: 'Tauri（WebView2）を用いたデスクトップアプリの開発中に特定した、IME表示位置の不具合の再現手順を報告しました。',
+      href: 'https://github.com/MicrosoftEdge/WebView2Feedback/issues/5799',
+      status: '報告済み・対応待ち（2026年11月）',
+    },
+  ],
+  skills: {
+    tiers: [
       {
-        title: 'バックエンド',
-        items: ['Go REST API', 'gRPC', 'Protocol Buffers', 'Laravel', 'Laravel Sanctum', 'Next.js Server Actions', 'Better Auth', 'OpenAI API'],
-      },
-      { title: 'データベース', items: ['PostgreSQL', 'Redis', 'Prisma', 'MySQL'] },
-      { title: 'テスト・セキュリティ検査', items: ['Pest', 'Larastan', 'Vitest', 'Playwright', 'axe-core', 'Semgrep', 'Trivy', 'gitleaks'] },
-      { title: '画像処理', items: ['OpenCV'] },
-      {
-        title: 'インフラ・運用',
+        id: 'design',
+        title: '自力で設計・実装できる',
+        description: '要件から設計・実装・テストまで、一人で進められる技術です。',
         items: [
+          'C',
+          'C++',
+          'Rust',
+          'Tauri',
+          'TypeScript',
+          'React',
+          'Vue.js',
+          'Next.js',
+          'Python',
+          'Go',
+          'PHP / Laravel',
+          'VB.NET',
+          'HALCON',
+          'OpenCV',
+          'PostgreSQL',
+          'MySQL',
           'Docker / Docker Compose',
-          'AWS EC2',
-          'AWS Systems Manager',
-          'CloudWatch',
-          'SNS',
+          'Linux（Rocky Linux 9、Ubuntu）',
+          'AWS',
+          'WebAssembly',
+          'gRPC / Protocol Buffers',
+          'Git / GitHub Actions / GitLab',
+        ],
+      },
+      {
+        id: 'work',
+        title: '実務で使用した',
+        description: '2023年10月〜2026年8月の実務案件で使用した技術です。',
+        items: [
+          'C',
+          'C++',
+          'Rust',
+          'Tauri',
+          'TypeScript',
+          'React',
+          'Vue.js',
+          'Python',
+          'VB.NET',
+          'C++ Builder',
+          'HALCON',
+          'OpenCV',
+          'Docker / Docker Compose',
+          'Linux（Rocky Linux 9、Ubuntu）',
+          'iTron OS',
+          'Cygwin',
+          'Git / GitLab',
+          'Windows',
+        ],
+      },
+      {
+        id: 'personal',
+        title: '個人開発・学習で使用した',
+        description: '公開している個人開発プロジェクトで使用した技術です。',
+        items: [
+          'C++20',
+          'TypeScript',
+          'React',
+          'Next.js',
+          'Python',
+          'Go',
+          'PHP / Laravel',
+          'Laravel Sanctum',
+          'Better Auth',
+          'OpenAI API',
+          'PostgreSQL',
+          'MySQL',
+          'Redis',
+          'Prisma',
+          'OpenCV',
+          'WebAssembly',
+          'Web Worker',
+          'gRPC / Protocol Buffers',
+          'Tailwind CSS',
+          'shadcn/ui',
+          'Pest',
+          'Larastan',
+          'Vitest',
+          'Playwright',
+          'axe-core',
+          'Semgrep',
+          'Trivy',
+          'gitleaks',
+          'Docker / Docker Compose',
+          'AWS（EC2、Systems Manager、CloudWatch、SNS）',
           'Nginx',
           'Cloudflare Pages',
           'Vercel',
