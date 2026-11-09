@@ -1,49 +1,51 @@
-.layout {
+.tiers {
   display: grid;
-  gap: 40px;
+  gap: 24px;
 }
 
-.blockTitle {
-  margin-bottom: 16px;
-  font-size: var(--text-lg);
-}
-
-.groups {
+.tier {
   display: grid;
   gap: 16px;
-  margin: 0;
+  align-content: start;
+  padding: 22px 20px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
 }
 
-.group {
-  display: grid;
-  gap: 8px;
+.tierHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
 }
 
-.groupTitle {
+.tierIndex {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--color-accent-soft);
+  color: var(--color-accent-strong);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.tierTitle {
+  font-size: var(--text-base);
+}
+
+.tierDescription {
+  margin-top: 4px;
   color: var(--color-text-muted);
   font-size: var(--text-sm);
-  font-weight: 500;
-}
-
-.groupItems {
-  margin: 0;
-}
-
-@media (min-width: 768px) {
-  .group {
-    grid-template-columns: 9rem 1fr;
-    align-items: start;
-    gap: 16px;
-  }
-
-  .groupTitle {
-    padding-top: 2px;
-  }
 }
 
 @media (min-width: 1024px) {
-  .layout {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
-    gap: 56px;
+  .tiers {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
   }
 }

@@ -1,38 +1,31 @@
-import type { SkillGroup } from '../../types.ts'
+import type { SkillTier } from '../../types.ts'
 import { TagList } from '../ui/TagList.tsx'
 import styles from './Skills.module.css'
 
 type Props = {
-  work: SkillGroup
-  personal: SkillGroup[]
-  personalTitle: string
+  tiers: SkillTier[]
 }
 
-export function Skills({ work, personal, personalTitle }: Props) {
+// 技術は「自力で設計・実装できる」「実務で使用した」「個人開発・学習で使用した」の3区分で表示する。
+export function Skills({ tiers }: Props) {
   return (
-    <div className={styles.layout}>
-      <section className={styles.block} aria-labelledby="skills-work">
-        <h3 id="skills-work" className={styles.blockTitle}>
-          {work.title}
-        </h3>
-        <TagList tags={work.items} label={work.title} />
-      </section>
-
-      <section className={styles.block} aria-labelledby="skills-personal">
-        <h3 id="skills-personal" className={styles.blockTitle}>
-          {personalTitle}
-        </h3>
-        <dl className={styles.groups}>
-          {personal.map((group) => (
-            <div key={group.title} className={styles.group}>
-              <dt className={styles.groupTitle}>{group.title}</dt>
-              <dd className={styles.groupItems}>
-                <TagList tags={group.items} label={group.title} />
-              </dd>
+    <div className={styles.tiers}>
+      {tiers.map((tier, index) => (
+        <section key={tier.id} className={styles.tier} aria-labelledby={`skills-${tier.id}`}>
+          <header className={styles.tierHeader}>
+            <span className={styles.tierIndex} aria-hidden="true">
+              {index + 1}
+            </span>
+            <div>
+              <h3 id={`skills-${tier.id}`} className={styles.tierTitle}>
+                {tier.title}
+              </h3>
+              <p className={styles.tierDescription}>{tier.description}</p>
             </div>
-          ))}
-        </dl>
-      </section>
+          </header>
+          <TagList tags={tier.items} label={tier.title} />
+        </section>
+      ))}
     </div>
   )
 }

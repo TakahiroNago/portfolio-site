@@ -55,16 +55,41 @@ export type FeaturedProject = Project & {
   }
 }
 
+/** 実務案件の期間・所属・規模・役割。個人開発の項目では省略する */
+export type ExperienceMeta = {
+  period: string
+  company?: string
+  team?: string
+  role?: string
+}
+
 export type ExperienceItem = {
   title: string
   description: string
+  meta?: ExperienceMeta
   responsibilities?: string[]
+  /** 数値などで示せる成果がある場合のみ記載する */
+  outcome?: string
   tags: string[]
 }
 
-export type SkillGroup = {
+/** スキルの習熟区分（①自力で設計・実装できる ②実務で使用した ③個人開発・学習で使用した） */
+export type SkillTier = {
+  id: string
   title: string
+  description: string
   items: string[]
+}
+
+export type OssItem = {
+  /** 例: "emilk/egui" */
+  repository: string
+  /** PR か Issue か */
+  kind: 'PR' | 'Issue'
+  title: string
+  description: string
+  href: string
+  status: string
 }
 
 export type SiteContent = {
@@ -80,6 +105,7 @@ export type SiteContent = {
   sections: {
     projects: { title: string; lead: string; otherTitle: string }
     experience: { title: string; lead: string; workTitle: string; personalTitle: string }
+    oss: { title: string; lead: string }
     skills: { title: string; lead: string }
     links: { title: string; lead: string }
   }
@@ -91,6 +117,12 @@ export type SiteContent = {
     architecture: string
     techStack: string
     responsibilities: string
+    outcome: string
+    period: string
+    company: string
+    team: string
+    role: string
+    status: string
     externalLink: string
   }
   featuredProjects: FeaturedProject[]
@@ -99,9 +131,9 @@ export type SiteContent = {
     work: ExperienceItem[]
     personal: ExperienceItem[]
   }
+  oss: OssItem[]
   skills: {
-    work: SkillGroup
-    personal: SkillGroup[]
+    tiers: SkillTier[]
   }
   footer: string
 }
