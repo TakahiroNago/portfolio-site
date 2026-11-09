@@ -18,7 +18,7 @@ export const ja: SiteContent = {
     role: 'ソフトウェアエンジニア',
     intro: [
       '実務では、C/C++による船舶制御システムの改修と、操船システムの新規開発（リーダー）を経て、Tauri（Rust）によるロボットアーム制御パッケージと外観検査装置ソフトウェアを、プログラム担当1名として設計から実装まで担当しました（2023年10月〜2026年8月）。',
-      '個人開発では、AIの提案を人間の承認と監査ログのもとで実行するセキュリティ管理プラットフォームをはじめ、Webアプリケーション・API・C++画像処理エンジンのWeb活用に取り組み、設計からデプロイ・運用まで一通り手がけています。Rustのライブラリ（egui、wry）には修正PRを提出し、LLMアプリケーション向けの入出力検査ライブラリ（llm-inspect）をRustで開発中です。',
+      '個人開発では、AIの提案を人間の承認と監査ログのもとで実行するセキュリティ管理プラットフォームをはじめ、Webアプリケーション・API・C++画像処理エンジンのWeb活用に取り組み、設計からデプロイ・運用まで一通り手がけています。Rustのライブラリ（egui、wry）には修正PRを提出し、LLMアプリケーション向けの入出力検査ライブラリ（llm-inspect）をRustで開発し、v0.1.0をcrates.ioに公開しています。',
     ],
     portrait: {
       src: '/images/face.webp',
@@ -593,10 +593,10 @@ export const ja: SiteContent = {
         tags: ['Laravel', 'PostgreSQL', 'Redis', 'React', 'TypeScript', 'Playwright', 'Semgrep', 'Trivy', 'GitHub Actions'],
       },
       {
-        title: 'Rustによるライブラリ・CLI開発（開発中）',
+        title: 'Rustによるライブラリ・CLI・HTTPサービス開発（v0.1.0をcrates.ioに公開）',
         description:
-          'LLMアプリケーションの入力（個人情報・秘密情報・プロンプトインジェクション）と出力（JSON Schema・許可リスト・HTML）を検査するライブラリとCLI（llm-inspect）を開発しています。NFKC正規化と不可視文字の除去を行ったうえで照合し、検出位置を元のテキストに対応付けます。clippy・テスト・Ubuntu / Windows / wasm32のCIを整えて公開しています（検出は完全ではないことを明記）。',
-        tags: ['Rust', 'regex', 'serde', 'jsonschema', 'clap', 'WebAssembly', 'GitHub Actions'],
+          'LLMアプリケーションの入力（個人情報・秘密情報・プロンプトインジェクション）と出力（JSON Schema・許可リスト・HTML）を検査するライブラリ（llm-inspect）を開発し、CLI・WebAssemblyデモ・axumのHTTPサービスから同じコアを利用しています。NFKC正規化と不可視文字の除去を行ったうえで照合し、検出位置を元のテキストに対応付けます。clippy・proptest・ファジング・Ubuntu / Windows / wasm32のCIを整え、crates.ioに公開しています（検出は完全ではないことを明記）。',
+        tags: ['Rust', 'regex', 'serde', 'jsonschema', 'clap', 'axum', 'WebAssembly', 'proptest', 'GitHub Actions'],
       },
       {
         title: 'Webアプリケーション・API開発',
