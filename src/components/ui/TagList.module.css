@@ -13,5 +13,9 @@
   font-size: var(--text-xs);
   line-height: 1.9;
   letter-spacing: 0.02em;
-  white-space: nowrap;
+  /* 長い項目（例：AWS（EC2, Systems Manager, CloudWatch, SNS））が
+     3カラム表示で枠からはみ出さないよう、タグ内で折り返す */
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
