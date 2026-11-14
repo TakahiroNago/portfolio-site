@@ -105,6 +105,8 @@ export type WorkHighlight = {
   scale: string
   /** 役割を強調する場合（リーダーなど） */
   emphasizeScale?: boolean
+  /** 進行中の案件などの状態 */
+  badge?: Badge
   period?: string
   description: string
   tags: string[]

@@ -45,6 +45,7 @@ export const ja: SiteContent = {
     experience: {
       eyebrow: '02 / Experience',
       title: '経歴',
+      lead: '雇用されて従事した実務と、個人で受注した受託開発を分けて記載しています。所属・依頼主は業種・種別で記載しています。',
     },
     oss: {
       eyebrow: '03 / Open Source',
@@ -772,6 +773,21 @@ export const ja: SiteContent = {
     },
   ],
   experience: [
+    {
+      org: '受託開発（個人で受注）',
+      period: '2026.11〜',
+      notes: ['依頼主：地域の商店街の組合', '各店舗への対応は商店街側が担当'],
+      highlights: [
+        {
+          title: '商店街のスタンプラリーWebアプリ',
+          scale: '1名｜要件のすり合わせ〜本番運用',
+          badge: { label: '開発中・2026年12月運用予定', tone: 'progress' },
+          description:
+            '2026年12月1日〜24日に開催する商店街のスタンプラリーのWebアプリ。参加者は店舗のQRコードを読み取ってスタンプを集め（同じ店舗は日本時間で1日1回）、条件を達成すると景品の対象として自動で登録される。判定はすべてサーバー側で行い、管理画面ではお知らせの送信と景品の発送・受取状況を管理。要件のすり合わせ・画面デザイン・開発・本番運用を担当。',
+          tags: ['Go', 'PostgreSQL', 'React', 'TypeScript', 'Vite', 'Vitest', 'axe-core', 'Docker'],
+        },
+      ],
+    },
     {
       org: 'プリント基板検査装置メーカー',
       period: '正社員｜2025.05〜2026.08',

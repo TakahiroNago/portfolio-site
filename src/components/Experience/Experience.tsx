@@ -25,6 +25,11 @@ export function Experience({ groups }: Props) {
                   <h4 className={styles.cardTitle}>{item.title}</h4>
                   <span className={item.emphasizeScale ? 'badge badge-solid' : styles.scale}>{item.scale}</span>
                 </div>
+                {item.badge && (
+                  <p>
+                    <span className={`badge badge-${item.badge.tone}`}>{item.badge.label}</span>
+                  </p>
+                )}
                 {item.period && <p className={styles.period}>{item.period}</p>}
                 <p className={styles.description}>{item.description}</p>
                 <p className={styles.tags}>{item.tags.join(' · ')}</p>
