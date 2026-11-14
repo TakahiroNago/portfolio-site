@@ -1,3 +1,4 @@
+import { Link } from '../ui/Link.tsx'
 import type { ExternalLink } from '../../types.ts'
 import styles from './Header.module.css'
 
@@ -6,31 +7,32 @@ type Props = {
   nav: { id: string; label: string }[]
   github: ExternalLink
   navLabel: string
+  externalLabel: string
 }
 
-export function Header({ name, nav, github, navLabel }: Props) {
+export function Header({ name, nav, github, navLabel, externalLabel }: Props) {
   return (
     <header className={styles.header}>
       <div className={`container ${styles.inner}`}>
-        <a className={styles.brand} href="#top">
+        <Link className={styles.brand} href="/">
           {name}
-        </a>
-        <nav aria-label={navLabel}>
+        </Link>
+        <nav aria-label={navLabel} className={styles.navWrap}>
           <ul className={styles.nav}>
             {nav.map((item) => (
               <li key={item.id}>
-                <a className={styles.navLink} href={`#${item.id}`}>
+                <Link className={styles.navLink} href={`/#${item.id}`}>
                   {item.label}
-                </a>
+                </Link>
               </li>
             ))}
-            <li className={styles.github}>
-              <a className={styles.navLink} href={github.href} target="_blank" rel="noopener noreferrer">
-                {github.label}
-              </a>
-            </li>
           </ul>
         </nav>
+        <a className={`btn btn-primary ${styles.github}`} href={github.href} target="_blank" rel="noopener noreferrer">
+          {github.label}
+          <span aria-hidden="true">↗</span>
+          <span className="visually-hidden">（{externalLabel}）</span>
+        </a>
       </div>
     </header>
   )

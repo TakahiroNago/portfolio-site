@@ -1,31 +1,47 @@
-import type { SkillTier } from '../../types.ts'
-import { TagList } from '../ui/TagList.tsx'
+import type { SkillCategory } from '../../types.ts'
 import styles from './Skills.module.css'
 
 type Props = {
-  tiers: SkillTier[]
+  categories: SkillCategory[]
+  legendWork: string
+  legendPersonal: string
 }
 
-// 技術は「実務で使用した」「個人開発・学習で使用した」の2区分で表示する（番号は職務経歴書の①②に対応）。
-export function Skills({ tiers }: Props) {
+/** 凡例。見出しの右側に置く */
+export function SkillsLegend({ legendWork, legendPersonal }: Omit<Props, 'categories'>) {
   return (
-    <div className={styles.tiers}>
-      {tiers.map((tier, index) => (
-        <section key={tier.id} className={styles.tier} aria-labelledby={`skills-${tier.id}`}>
-          <header className={styles.tierHeader}>
-            <span className={styles.tierIndex} aria-hidden="true">
-              {index + 1}
-            </span>
-            <div>
-              <h3 id={`skills-${tier.id}`} className={styles.tierTitle}>
-                {tier.title}
-              </h3>
-              <p className={styles.tierDescription}>{tier.description}</p>
-            </div>
-          </header>
-          <TagList tags={tier.items} label={tier.title} />
-        </section>
+    <ul className={styles.legend}>
+      <li>
+        <span className={styles.swatchWork} aria-hidden="true" />
+        {legendWork}
+      </li>
+      <li>
+        <span className={styles.swatchPersonal} aria-hidden="true" />
+        {legendPersonal}
+      </li>
+    </ul>
+  )
+}
+
+// 色だけに頼らないよう、実務で使用した項目には読み上げ用の補足を付ける
+export function Skills({ categories, legendWork, legendPersonal }: Props) {
+  return (
+    <dl className={styles.rows}>
+      {categories.map((category) => (
+        <div key={category.title} className={styles.row}>
+          <dt className={styles.title}>{category.title}</dt>
+          <dd className={styles.items}>
+            <ul className={styles.chips}>
+              {category.items.map((item) => (
+                <li key={item.name} className={item.work ? styles.work : styles.personal}>
+                  {item.name}
+                  <span className="visually-hidden">（{item.work ? legendWork : legendPersonal}）</span>
+                </li>
+              ))}
+            </ul>
+          </dd>
+        </div>
       ))}
-    </div>
+    </dl>
   )
 }

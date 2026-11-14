@@ -1,25 +1,26 @@
 import type { SiteContent } from '../types.ts'
 
 // 掲載内容はすべてこのファイルで管理する。
-// 公開リポジトリのREADME・設定ファイルと、本人から提供された情報で確認できる内容のみを記載する。
-// 実務・個人開発・OSS は分けて記載し、スキルは「①実務で使用／②個人開発・学習で使用」の2区分で示す。
+// 公開リポジトリのREADME・設定ファイル・設計書と、本人から提供された情報で確認できる内容のみを記載する。
+// 実務・個人開発・OSS は分けて記載し、スキルは「実務で使用／個人開発・学習で使用」の2区分で示す。
 
 export const ja: SiteContent = {
   lang: 'ja',
+  siteTitle: '名合 貴洋 | ソフトウェアエンジニア',
   nav: [
     { id: 'projects', label: 'プロジェクト' },
     { id: 'experience', label: '経歴' },
     { id: 'oss', label: 'OSS' },
     { id: 'skills', label: 'スキル' },
-    { id: 'links', label: 'リンク' },
   ],
   profile: {
     name: '名合 貴洋',
-    role: 'ソフトウェアエンジニア',
-    intro: [
-      '実務では、C/C++による船舶制御システムの改修と、操船システムの新規開発（リーダー）を経て、Tauri（Rust）によるロボットアーム制御パッケージと外観検査装置ソフトウェアを、プログラム担当1名として設計から実装まで担当しました（2023年10月〜2026年8月）。',
-      '個人開発では、AIの提案を人間の承認と監査ログのもとで実行するセキュリティ管理プラットフォームをはじめ、Webアプリケーション・Go・MySQLによるゲームバックエンドAPI・C++画像処理エンジンのWeb活用に取り組み、設計からデプロイ・運用まで一通り手がけています。LLMアプリケーション向けの入出力検査ライブラリ（llm-inspect）をRustで開発してv0.1.0をcrates.ioに公開し、Tauri本体には修正PRがマージされ（2026年11月）、Rustのライブラリ（egui、wry）にも修正PRを提出しています。',
+    eyebrow: 'Software Engineer — 組込み制御 × Web × AIセキュリティ',
+    lead: [
+      '船舶制御システムの開発と、検査装置・ロボットアーム制御ソフトの設計〜実装を担当。',
+      '個人開発では、AIを安全に業務へ組み込む仕組みをつくっています。',
     ],
+    sub: 'C/C++・Rust（Tauri）での実務2年11か月（2023年10月〜2026年8月）。Laravel・React・Go・Rustでの個人開発と、Rust製OSSへのコントリビュートにも取り組んでいます。',
     portrait: {
       src: '/images/face.webp',
       alt: '名合 貴洋のポートレートイラスト',
@@ -27,55 +28,99 @@ export const ja: SiteContent = {
       height: 1254,
     },
     github: { label: 'GitHub', href: 'https://github.com/TakahiroNago' },
+    stats: [
+      { value: '2年11か月', label: 'C/C++・Rustでの実務（2023.10〜2026.08）' },
+      { value: '約14秒 → 約3秒', label: '検査画像処理をC++からRustへ（概算）' },
+      { value: 'Tauri 本体', label: '修正PRがマージ（2026年11月）' },
+      { value: 'crates.io', label: 'llm-inspect v0.1.0 を公開' },
+    ],
   },
   sections: {
     projects: {
+      eyebrow: '01 / Projects',
       title: 'プロジェクト',
-      lead: '個人開発で制作し、公開しているWebアプリケーションです。',
+      lead: '個人開発で制作・公開しているもの。各カードの「詳細」から、設計や判断の経緯をまとめたページへ進めます。',
       otherTitle: 'その他のプロジェクト',
     },
     experience: {
+      eyebrow: '02 / Experience',
       title: '経歴',
-      lead: '実務での経験と、個人開発で取り組んでいる内容を分けて記載しています。実務は案件ごとに期間・規模・役割を記載しています。',
-      workTitle: '実務経験（2023年10月〜2026年8月）',
-      personalTitle: '個人開発（2026年9月〜）',
     },
     oss: {
+      eyebrow: '03 / Open Source',
       title: 'OSS活動',
-      lead: '業務や個人開発で遭遇した不具合を、原因を特定して上流へ報告・修正しています。tauri-apps/tauri への修正はマージされ、ほかは2026年11月時点でレビュー中・対応待ちです。',
+      lead: '業務や個人開発で遭遇した不具合の原因を特定し、上流へ報告・修正しています。状況は2026年11月時点です。',
     },
     skills: {
+      eyebrow: '04 / Skills',
       title: 'スキル',
-      lead: '「実務で使用した」「個人開発・学習で使用した」の2つに分けて記載しています。1つの技術が両方に入ることがあります。',
-    },
-    links: {
-      title: 'リンク',
-      lead: '各プロジェクトのソースコードはGitHubで公開しています。',
+      lead: '塗りつぶしは実務で使用した技術（個人開発でも使用したものを含む）、枠線のみは個人開発・学習で使用した技術です。',
+      legendWork: '実務で使用',
+      legendPersonal: '個人開発・学習',
     },
   },
   labels: {
     skipToContent: '本文へスキップ',
-    mainNav: 'ページ内ナビゲーション',
+    mainNav: 'メイン',
     viewProjects: 'プロジェクトを見る',
-    featured: '注目のプロジェクト',
-    architecture: 'ARCHITECTURE',
-    techStack: '使用技術',
-    responsibilities: '担当工程',
-    outcome: '成果',
-    period: '期間',
-    company: '所属',
-    team: '規模',
-    role: '役割',
-    status: '状況',
+    viewExperience: '経歴を見る',
+    featured: '注目',
+    details: '詳細',
+    detailsLong: '詳細を見る',
+    backToList: 'プロジェクト一覧へ',
+    backToListShort: 'プロジェクト一覧',
+    next: '次',
+    toc: '目次',
+    overview: '概要',
+    background: 'なぜ作ったか',
+    keyDecision: '中心となる判断',
+    architecture: 'アーキテクチャ',
+    techStack: '技術スタック',
+    screenshot: '画面',
+    notFound: 'ページが見つかりませんでした。',
     externalLink: '新しいタブで開きます',
+    toTop: 'ページの先頭へ',
   },
   featuredProjects: [
     {
       id: 'secureflow',
       name: 'SecureFlow AI',
-      tagline: 'AIが業務を分析して計画を提案し、人間の承認を経て実行するセキュリティ管理プラットフォーム',
+      category: 'Webアプリ',
+      badge: { label: 'MVP完成・AWS公開準備中', tone: 'progress' },
+      short: 'AIが計画を提案し、人間の承認を経て実行する、組織向けセキュリティ管理プラットフォーム。',
+      points: [
+        'AIは提案のみ。ツール実行・DB・外部通信の権限を持たせない設計',
+        '承認を計画のSHA-256ハッシュに紐付け、実行直前に再検証',
+        '改ざんを検出できるハッシュチェーン監査ログ',
+        'CI 7ジョブ（Semgrep・Trivy・3ブラウザE2Eなど）を全PRで必須化',
+      ],
+      keyTags: ['Laravel', 'React', 'PostgreSQL', 'Redis', 'Terraform'],
+      cardFlow: {
+        title: '提案から実行までの経路',
+        steps: [
+          { label: '入力検査', detail: 'マスキング・インジェクション検出' },
+          { label: 'AIが提案', detail: '権限なし・既定はモック' },
+          { label: '出力検証', detail: 'スキーマ・許可リスト' },
+          { label: '人間が承認', detail: 'SHA-256に紐付け', emphasis: 'filled' },
+          { label: '再検証 → 実行', detail: '二重実行を防止' },
+          { label: '監査ログ', detail: 'ハッシュチェーン' },
+        ],
+      },
+      tagline: 'AIが業務を分析して計画を提案し、人間の承認を経て実行する、組織向けのセキュリティ管理プラットフォーム。',
       summary:
-        '業務内容の依頼文からAIがワークフロー（実行計画）を提案し、入力と出力の検査、人間による承認、実行前の再検証、改ざんを検出できる監査ログを経て実行する、組織向けのWebアプリケーションです。AIにはツール実行・DB・外部通信の権限を与えず、提案のみを行わせる設計にしています。Laravel・PostgreSQL・Redis・Reactで実装し、要件定義・脅威モデル・設計書・テスト戦略を文書化しながら、工程ごとにテスト・静的解析・セキュリティスキャンをCIで通して開発を進め、要件定義で定めた15項目の完成条件を根拠付きで確認してMVPを完成させました。開発環境で動作し、AIは既定でモック、実行は模擬のみです（公開デモはありません。公開環境へ移行する前に満たす条件は設計書に整理しています）。2026年11月からAWSへの公開に向けた工程（本番用コンテナイメージ、TerraformによるVPC・ALB・EC2・CloudWatch・SNS・Budgetsの定義）に着手しています（未公開）。',
+        '業務内容の依頼文からAIがワークフロー（実行計画）を提案し、入力と出力の検査、人間による承認、実行前の再検証、改ざんを検出できる監査ログを経て実行するWebアプリケーションです。Laravel・PostgreSQL・Redis・Reactで実装し、要件定義で定めた15項目の完成条件を根拠付きで確認してMVPを完成させました。開発環境で動作し、AIは既定でモック、実行は模擬のみです（公開デモはありません。公開環境へ移行する前に満たす条件は設計書に整理しています）。2026年11月からAWSへの公開に向けた工程（本番用コンテナイメージ、TerraformによるVPC・ALB・EC2・CloudWatch・SNS・Budgetsの定義）に着手しています（未公開）。',
+      meta: [
+        { label: '役割', value: '個人開発（要件定義〜CI）' },
+        { label: '状態', value: 'MVP完成・AWS公開準備中（未公開）' },
+        { label: '完成条件', value: '15項目を根拠付きで確認' },
+        { label: '動作', value: '開発環境（AIは既定でモック、実行は模擬のみ）' },
+      ],
+      background: [
+        'AIで業務を効率化しようとすると、AIに過剰な権限を与えるリスク、プロンプトインジェクションによる指示の書き換え、個人情報・機密情報のAIへの送信、AIが行った操作を追跡できないことが問題になります。',
+        '単なるAIチャットではなく、企業でのAI業務利用を想定し、これらのリスクを管理しながらAIに業務を任せられるワークフロー管理システムとして設計しました（要件定義書の「目的」「解決する課題」より）。',
+      ],
+      keyDecision:
+        'AIにはツール実行・DB・外部通信の権限を与えず、提案のみを行わせる。これを最終防御層とし、その手前に検査・承認・再検証を重ねる。',
       tags: [
         'PHP',
         'Laravel',
@@ -146,6 +191,12 @@ export const ja: SiteContent = {
         },
         {
           title: 'テスト・CI',
+          stats: [
+            { value: '7', label: 'PRごとに必須のCIジョブ' },
+            { value: '3', label: 'E2Eを実行するブラウザ' },
+            { value: '26', label: 'アプリ内セキュリティ自己診断のケース' },
+            { value: 'Lv.8', label: 'Larastanの静的解析' },
+          ],
           items: [
             'Pest（セキュリティテストを独立したグループに分離）、Larastan（レベル8）、Pint、Vitest、ESLint、カバレッジの目標',
             'PlaywrightによるE2Eテストを、ビルド済みの画面に対して実ブラウザ3種（Chromium / Firefox / WebKit）で実行',
@@ -168,24 +219,24 @@ export const ja: SiteContent = {
         lead: 'AIの提案は検査を通ってから保存され、人間の承認を経て、実行の直前にもう一度検証されます。すべての操作が監査ログに残ります。',
         paths: [
           {
-            title: '分析（AIの提案）',
+            title: 'A. 分析（AIの提案）',
             description: 'AIに渡るのはマスク済みの入力だけで、AIからの出力は検証に通ったものだけが保存されます。',
             steps: [
-              { label: 'ブラウザ', detail: 'React SPA', via: '同一オリジン / Cookie セッション' },
+              { label: 'React SPA', detail: 'ブラウザ', via: '同一オリジン / Cookie セッション' },
               { label: 'Laravel API', detail: 'Nginx経由。認証・CSRF・認可' },
               { label: '入力検査', detail: 'マスキング・秘密情報・インジェクション検出' },
-              { label: 'AIプロバイダ', detail: '提案のみ（既定はモック）', via: 'worker（キュー）' },
+              { label: 'AIプロバイダ', detail: '提案のみ（既定はモック）', via: 'worker（キュー）', emphasis: 'dashed' },
               { label: '出力検証', detail: 'スキーマ・許可リスト・機密情報・HTML除去' },
               { label: 'PostgreSQL', detail: 'ワークフローとして保存' },
             ],
           },
           {
-            title: '承認と実行',
+            title: 'B. 承認と実行',
             description: '承認した内容と実行する内容が同じであることを、ハッシュで保証します。',
             steps: [
               { label: '申請者', detail: '計画を確認して承認を依頼' },
               { label: '管理者', detail: '承認画面で内容を確認（自己承認は不可）' },
-              { label: '承認', detail: '計画のSHA-256ハッシュに紐付け' },
+              { label: '承認', detail: '計画のSHA-256ハッシュに紐付け', emphasis: 'filled' },
               { label: '実行前の再検証', detail: 'ハッシュ・ポリシー・二重実行の確認' },
               { label: '模擬実行', detail: '外部への操作は行わない' },
               { label: '監査ログ', detail: 'ハッシュチェーンで記録' },
@@ -194,13 +245,31 @@ export const ja: SiteContent = {
         ],
         sharedCore: { label: '共通の記録', value: '監査ログ（組織ごとのハッシュチェーン。DB関数からのみ追記、更新・削除はトリガーで禁止）' },
       },
+      stack: [
+        { label: 'バックエンド', items: ['PHP', 'Laravel', 'Laravel Sanctum', 'PostgreSQL', 'Redis'] },
+        { label: 'フロントエンド', items: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'TanStack Query', 'Zod'] },
+        { label: 'テスト・品質', items: ['Pest', 'Larastan', 'Vitest', 'Playwright', 'Semgrep', 'Trivy', 'gitleaks'] },
+        { label: 'インフラ', items: ['Docker Compose', 'Nginx', 'Terraform（着手中）', 'GitHub Actions'] },
+        { label: 'AI', items: ['OpenAI API（既定はモック）'] },
+      ],
     },
     {
       id: 'llm-inspect',
       name: 'llm-inspect',
-      tagline: 'LLMアプリケーションの入力と出力を検査するRustライブラリ（v0.1.0をcrates.ioに公開）',
+      category: 'Rustライブラリ',
+      badge: { label: 'crates.io 公開', tone: 'done' },
+      short: 'LLMアプリの入力（個人情報・秘密情報・インジェクション）と出力（JSON Schema・許可リスト）を検査するライブラリ。',
+      points: ['NFKC正規化・不可視文字の除去で、全角文字などによる回避に対策', '同じコアをCLI・WebAssembly・axumのHTTPサービスで利用'],
+      keyTags: ['Rust', 'WebAssembly', 'serde', 'clap'],
+      tagline: 'LLMアプリケーションの入力と出力を検査するRustライブラリ。v0.1.0をcrates.ioに公開。',
       summary:
         'LLMアプリケーションに渡す入力（個人情報・秘密情報・プロンプトインジェクション）と、LLMが返した出力（JSON Schema・許可リスト・HTML・サイズ）を検査するRustのライブラリです。同じコアをCLI・ブラウザ内のWebAssemblyデモ・axumのHTTPサービス（Docker）から利用できます。全角文字やゼロ幅文字による回避を防ぐため、正規化したうえで照合し、検出位置は元のテキストのバイト位置へ対応付けて返します。検出は完全ではなく、多層防御の一層として使う前提であることをREADMEとデモに明記しています。',
+      meta: [
+        { label: '役割', value: '個人開発' },
+        { label: '公開', value: 'crates.io v0.1.0（MIT / Apache-2.0）' },
+        { label: 'デモ', value: 'ブラウザ内で検査（WebAssembly）' },
+        { label: '利用形態', value: 'ライブラリ・CLI・HTTPサービス' },
+      ],
       tags: [
         'Rust',
         'regex',
@@ -219,7 +288,7 @@ export const ja: SiteContent = {
         'GitHub Pages',
       ],
       links: [
-        { label: 'デモ（ブラウザ内で検査）', href: 'https://takahironago.github.io/llm-inspect/' },
+        { label: 'デモ（ブラウザ内で検査）', short: 'デモ', href: 'https://takahironago.github.io/llm-inspect/' },
         { label: 'GitHub', href: 'https://github.com/TakahiroNago/llm-inspect' },
         { label: 'crates.io', href: 'https://crates.io/crates/llm-inspect' },
         { label: 'docs.rs', href: 'https://docs.rs/llm-inspect' },
@@ -270,21 +339,21 @@ export const ja: SiteContent = {
         lead: '検査のロジックはコアクレートにまとめ、CLI・WebAssembly・HTTPサービスは入出力の変換だけを担当します。',
         paths: [
           {
-            title: '入力の検査',
+            title: 'A. 入力の検査',
             description: '正規化したテキストで照合し、結果は元のテキストの位置で返します。',
             steps: [
               { label: '入力テキスト', detail: 'CLI / ブラウザ / HTTP' },
               { label: '正規化', detail: 'NFKC・不可視文字の除去・位置の対応表' },
               { label: 'ルール照合', detail: 'TOMLの正規表現・Luhn検証' },
-              { label: '判定', detail: '許可 / 警告 / 遮断' },
+              { label: '判定', detail: '許可 / 警告 / 遮断', emphasis: 'filled' },
               { label: 'レポート・マスキング', detail: '元のテキストのバイト位置' },
             ],
           },
           {
-            title: '出力の検証',
+            title: 'B. 出力の検証',
             description: 'LLMの出力を信頼せず、形式と値を検証してから使います。',
             steps: [
-              { label: 'LLMの出力', detail: 'JSON' },
+              { label: 'LLMの出力', detail: 'JSON', emphasis: 'dashed' },
               { label: 'JSON Schema', detail: '構造の検証' },
               { label: '許可リスト', detail: 'JSONポインタで指定した値' },
               { label: 'HTML・サイズ', detail: '混入と上限の検査' },
@@ -294,13 +363,29 @@ export const ja: SiteContent = {
         ],
         sharedCore: { label: '共通のコア', value: 'llm-inspect クレート（CLI・wasm-bindgen・axumの各クレートから利用）' },
       },
+      stack: [
+        { label: 'コア', items: ['Rust', 'regex', 'serde', 'TOML', 'jsonschema'] },
+        { label: '利用形態', items: ['clap（CLI）', 'axum（HTTP）', 'WebAssembly', 'wasm-bindgen'] },
+        { label: 'テスト', items: ['proptest', 'cargo-fuzz', 'Criterion'] },
+        { label: '配信・CI', items: ['Docker', 'GitHub Actions', 'GitHub Pages', 'crates.io'] },
+      ],
     },
     {
       id: 'mini-game',
       name: 'Mini Game Backend',
-      tagline: '並行アクセスでもデータが壊れないことをテストで示した、Go製のゲームバックエンドAPIと運営管理画面',
+      category: 'バックエンドAPI',
+      short: '並行アクセスでもデータが壊れないことをテストで示した、Go製ゲームAPIと運営管理画面。',
+      points: ['UNIQUE制約と条件付きUPDATEで二重取得・二重消費を防止', '100並行の報酬取得テストを実MySQLに対してCIで実行'],
+      keyTags: ['Go', 'MySQL', 'React', 'Docker Compose'],
+      tagline: '並行アクセスでもデータが壊れないことをテストで示した、Go製のゲームバックエンドAPIと運営管理画面。',
       summary:
         'デイリー報酬・アイテム使用・ランキングなどのゲーム向けAPIをGo・MySQLで実装し、React製の運営管理画面を付けたものです。報酬の二重取得やアイテムの二重消費をアプリ側の事前チェックに頼らず、DBのUNIQUE制約と条件付きUPDATEで防ぎ、100並行の報酬取得などの並行テストを実際のMySQLに対してCIで毎回実行しています。Docker Composeで動作します（公開デモはありません）。',
+      meta: [
+        { label: '役割', value: '個人開発' },
+        { label: '構成', value: 'Go API ＋ React製の運営管理画面' },
+        { label: '動作', value: 'Docker Compose（公開デモなし）' },
+        { label: '並行テスト', value: 'CIで毎回、実MySQLに対して実行' },
+      ],
       tags: [
         'Go',
         'chi',
@@ -355,18 +440,18 @@ export const ja: SiteContent = {
         lead: '状態を変える処理は1つのトランザクションにまとめ、整合性はDBの制約で守ります。',
         paths: [
           {
-            title: 'ゲームAPI（プレイヤー）',
+            title: 'A. ゲームAPI（プレイヤー）',
             description: 'アイテム使用はIdempotency-Keyで再送しても1回だけ処理されます。',
             steps: [
               { label: 'クライアント', detail: 'Bearerトークン', via: 'HTTP / JSON' },
               { label: 'ミドルウェア', detail: 'レート制限・ボディ上限・JWT検証' },
               { label: 'Go API', detail: 'chi / 報酬・アイテム・ランキング' },
-              { label: 'トランザクション', detail: 'players行をFOR UPDATE → 条件付きUPDATE' },
+              { label: 'トランザクション', detail: 'players行をFOR UPDATE → 条件付きUPDATE', emphasis: 'filled' },
               { label: 'MySQL', detail: 'UNIQUE制約で二重処理を拒否' },
             ],
           },
           {
-            title: '運営管理',
+            title: 'B. 運営管理',
             description: '管理画面はnginxから同一オリジンでAPIに中継します。',
             steps: [
               { label: '管理画面', detail: 'React / TanStack Query' },
@@ -378,13 +463,33 @@ export const ja: SiteContent = {
         ],
         sharedCore: { label: '監視', value: 'Prometheusが/metricsを15秒ごとに取得し、GrafanaでRPS・p95・報酬取得の結果別件数などを表示' },
       },
+      stack: [
+        { label: 'バックエンド', items: ['Go', 'chi', 'MySQL', 'JWT'] },
+        { label: '管理画面', items: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'TanStack Query'] },
+        { label: '監視', items: ['Prometheus', 'Grafana'] },
+        { label: 'インフラ', items: ['Docker Compose', 'Nginx', 'GitHub Actions'] },
+      ],
     },
     {
       id: 'projectflow',
       name: 'ProjectFlow',
-      tagline: '個人開発者・小規模チーム向けのプロジェクト管理Webアプリケーション',
+      category: 'Webアプリ',
+      badge: { label: 'デモ公開中', tone: 'done' },
+      short: '個人開発者・小規模チーム（2〜10人）向けのプロジェクト管理Webアプリ。登録せずにデモを試せます。',
+      points: [
+        'Server Actionsで認証・入力の検証、service層で認可とトランザクションを処理',
+        '本番DBを毎日バックアップし、空のDBへ復元して取得元との一致を確認',
+      ],
+      keyTags: ['Next.js', 'PostgreSQL', 'Prisma', 'Playwright'],
+      tagline: '個人開発者・小規模チーム向けのプロジェクト管理Webアプリケーション。',
       summary:
         '個人開発者・小規模チーム（2〜10人）向けのプロジェクト管理Webアプリケーションです。プロジェクト単位でタスクを管理し、進捗・優先度・期限を把握できます。Next.js（App Router）とPostgreSQLで実装し、認証・権限管理・ユーザー間のデータ分離に加え、単体・統合・E2Eテスト、承認付きのリリース、本番DBの自動バックアップの仕組みまで整えています。',
+      meta: [
+        { label: '役割', value: '個人開発' },
+        { label: '対象', value: '個人開発者・小規模チーム（2〜10人）' },
+        { label: '公開', value: 'デモ公開中（登録せずに試せる）' },
+        { label: '運用', value: 'Vercel・Neonで本番運用' },
+      ],
       tags: [
         'Next.js',
         'React',
@@ -406,7 +511,7 @@ export const ja: SiteContent = {
         'Cloudflare R2',
       ],
       links: [
-        { label: 'デモ（登録せずに試せます）', href: 'https://projectflow.art-full-stack.com/login' },
+        { label: 'デモ（登録せずに試せます）', short: 'デモ', href: 'https://projectflow.art-full-stack.com/login' },
         { label: 'GitHub', href: 'https://github.com/TakahiroNago/project-management-app' },
       ],
       screenshot: {
@@ -480,38 +585,58 @@ export const ja: SiteContent = {
         lead: '読み取りはServer ComponentsでDBのセッションを検証してから、更新はServer Actionsで認証・入力の検証・認可を行ってから実行します。認証APIはBetter Auth（/api/auth/*）が担当します。',
         paths: [
           {
-            title: '読み取り（画面の表示）',
+            title: 'A. 読み取り（画面の表示）',
             description: '所属していないプロジェクトは、存在しないもの（404）として扱います。',
             steps: [
               { label: 'ブラウザ', via: 'HTTPS' },
               { label: 'proxy.ts', detail: 'Cookieが無ければ/loginへ誘導' },
               { label: 'Server Components', detail: 'ページの描画' },
-              { label: 'requireUser', detail: 'DBでセッションを検証' },
+              { label: 'requireUser', detail: 'DBでセッションを検証', emphasis: 'filled' },
               { label: 'queries.ts', detail: 'データの取得', via: 'Prisma' },
               { label: 'PostgreSQL', detail: 'Neon' },
             ],
           },
           {
-            title: '更新（Server Actions）',
+            title: 'B. 更新（Server Actions）',
             description: '認証と入力の検証のあと、service.tsで認可とトランザクションを処理します。',
             steps: [
               { label: 'ブラウザ', detail: 'React Hook Form / dnd-kit' },
               { label: 'Server Action', detail: '認証' },
               { label: 'Zod', detail: '入力の検証' },
-              { label: 'service.ts', detail: '認可・トランザクション', via: 'Prisma' },
+              { label: 'service.ts', detail: '認可・トランザクション', via: 'Prisma', emphasis: 'filled' },
               { label: 'PostgreSQL', detail: 'Neon' },
             ],
           },
         ],
         sharedCore: { label: '共通のドメインロジック', value: 'src/domain（権限表・進捗率・日付判定の純粋関数）' },
       },
+      stack: [
+        { label: 'アプリ', items: ['Next.js（App Router）', 'React', 'TypeScript', 'Tailwind CSS', 'shadcn/ui', 'React Hook Form', 'dnd-kit'] },
+        { label: '認証・データ', items: ['Better Auth', 'Zod', 'Prisma', 'PostgreSQL'] },
+        { label: 'テスト', items: ['Vitest', 'Playwright', 'axe-core'] },
+        { label: 'インフラ', items: ['Vercel', 'Neon', 'Resend', 'Cloudflare R2', 'GitHub Actions'] },
+      ],
     },
     {
       id: 'svg-app',
       name: 'SVG App',
-      tagline: 'ラスター画像をSVGに変換するWebアプリケーション',
+      category: '画像処理 × Web',
+      badge: { label: 'デモ公開中', tone: 'done' },
+      short: 'ラスター画像をSVGに変換するWebアプリ。C++の画像処理エンジンを、ブラウザ内変換とAWS上のサーバー変換の2方式で提供。',
+      points: [
+        '同じC++エンジンをブラウザ（WebAssembly）とサーバー（gRPC）で共用',
+        'ブラウザ内変換では画像をサーバーへ送信せず、Web Workerで処理',
+      ],
+      keyTags: ['C++20', 'OpenCV', 'WebAssembly', 'Go', 'AWS'],
+      tagline: 'ラスター画像をSVGに変換するWebアプリケーション。',
       summary:
         'PNG・JPEG画像を指定した色数に減色し、色の領域と輪郭を抽出してSVG形式のベクター画像に変換します。C++20とOpenCVで実装した変換エンジンを、ブラウザ内のWebAssemblyと、Go REST APIからgRPC経由で呼び出すサーバー側の、2つの経路から利用できる構成にしています。',
+      meta: [
+        { label: '役割', value: '個人開発' },
+        { label: '公開', value: 'ブラウザ内変換版・AWS版のデモ' },
+        { label: '構成', value: 'C++エンジンをWebAssemblyとgRPCで共用' },
+        { label: 'リポジトリ', value: 'Webフロントエンド・C++エンジン/APIの2つ' },
+      ],
       tags: [
         'C++20',
         'OpenCV',
@@ -529,10 +654,10 @@ export const ja: SiteContent = {
         'SNS',
       ],
       links: [
-        { label: 'デモ（ブラウザ内変換）', href: 'https://svg.art-full-stack.com/' },
-        { label: 'AWS版（サーバー側変換）', href: 'https://aws-svg.art-full-stack.com/' },
-        { label: 'GitHub（Webフロントエンド）', href: 'https://github.com/TakahiroNago/svg-web' },
-        { label: 'GitHub（C++エンジン・API）', href: 'https://github.com/TakahiroNago/svg-app' },
+        { label: 'デモ（ブラウザ内変換）', short: 'デモ', href: 'https://svg.art-full-stack.com/' },
+        { label: 'AWS版（サーバー側変換）', short: 'AWS版', href: 'https://aws-svg.art-full-stack.com/' },
+        { label: 'GitHub（Webフロントエンド）', short: 'GitHub（Web）', href: 'https://github.com/TakahiroNago/svg-web' },
+        { label: 'GitHub（C++エンジン・API）', short: 'GitHub（エンジン）', href: 'https://github.com/TakahiroNago/svg-app' },
       ],
       screenshot: {
         src: '/images/projects/svg-app.png',
@@ -594,325 +719,219 @@ export const ja: SiteContent = {
         lead: '同じC++の変換コアを、ブラウザ内とサーバー側の両方から利用しています。',
         paths: [
           {
-            title: 'ブラウザ内変換',
+            title: 'A. ブラウザ内変換',
             description: 'Cloudflare Pages版（デモ）。画像はサーバーへ送信されません。',
             steps: [
               { label: 'React / TypeScript', detail: '画像の読み込み・デコード' },
               { label: 'Web Worker', detail: 'UIと変換処理を分離' },
               { label: 'WebAssembly', detail: 'C++の変換コアをビルド' },
-              { label: 'C++ / OpenCV', detail: '減色・輪郭抽出' },
+              { label: 'C++ / OpenCV', detail: '減色・輪郭抽出', emphasis: 'filled' },
               { label: 'SVG', detail: 'プレビュー・ダウンロード' },
             ],
           },
           {
-            title: 'サーバー側変換',
+            title: 'B. サーバー側変換',
             description: 'AWS版（EC2）。画像はサーバーへ送信されます。',
             steps: [
               { label: 'ブラウザ', via: 'HTTPS' },
               { label: 'ホスト側Nginx', detail: 'EC2 / HTTPS終端' },
               { label: 'フロントエンドNginx', detail: 'Docker / 静的ファイル配信', via: '/api/*' },
               { label: 'Go REST API', detail: 'デコード・入力制限', via: 'gRPC' },
-              { label: 'C++ gRPCサーバー', detail: 'OpenCVによる変換' },
+              { label: 'C++ gRPCサーバー', detail: 'OpenCVによる変換', emphasis: 'filled' },
             ],
           },
         ],
         sharedCore: { label: '共通の変換コア', value: 'svg-converter ライブラリ（C++20 / OpenCV）' },
       },
+      stack: [
+        { label: '変換エンジン', items: ['C++20', 'OpenCV', 'WebAssembly'] },
+        { label: 'フロントエンド', items: ['React', 'TypeScript', 'Vite', 'Web Worker'] },
+        { label: 'API', items: ['Go', 'gRPC', 'Protocol Buffers'] },
+        { label: 'インフラ', items: ['Docker Compose', 'AWS EC2', 'Nginx', 'CloudWatch', 'SNS', 'GitHub Actions', 'Cloudflare Pages'] },
+      ],
     },
   ],
-  projects: [
+  otherProjects: [
     {
       id: 'paintmix',
       name: 'PaintMix',
-      tagline: '絵の具の混色をシミュレーションするWebアプリケーション',
-      summary:
-        '複数の絵の具の色を混ぜ合わせたときの色の変化を、ブラウザ上で確認できます。2色の混合比や白を混ぜる量を調整でき、さらに色を追加して混ぜることもできます。',
-      highlights: [
-        'React / TypeScriptによるUI設計と型安全な実装',
-        '日本語・英語のUIに対応',
-        '混色処理と画面のテストを実装',
-      ],
-      note: '混色処理には外部ライブラリのMixboxを使用しています。',
-      tags: ['React', 'TypeScript', 'Vite', 'Mixbox'],
+      short: '絵の具の混色をブラウザで確認できるツール',
       links: [
         { label: 'デモ', href: 'https://paint.art-full-stack.com/' },
         { label: 'GitHub', href: 'https://github.com/TakahiroNago/paint-mix-app' },
       ],
-      screenshot: {
-        src: '/images/projects/paintmix.png',
-        alt: 'PaintMixの画面。左側で2色の絵の具と混合比・白を混ぜる量を調整し、右側に混色結果の色とHEX値、配合レシピが表示されている。',
-        width: 1000,
-        height: 640,
-      },
     },
     {
       id: 'zen',
       name: 'ZEN — 心の庵',
-      tagline: '禅の考え方を参考にしたAI相談アプリケーション',
-      summary:
-        'AIとの対話を通じて、日常の悩みや迷いを言葉にし、禅の考え方を参考にしながら自分自身を見つめ直すためのWebアプリケーションです。企画・設計・実装から、テスト、本番環境へのデプロイ・運用まで一貫して開発しています。',
-      highlights: [
-        'OpenAI APIとの連携と、応答方針を制御するプロンプト設計',
-        '過去の相談のトピック分類・要約を活用した対話',
-        '個人情報と思われる記述の検出と、伏せ字の提案',
-        'AI APIの予算を守るための段階的な利用上限と、ゲストの試用回数のIPアドレス単位の制限',
-        'Stripe決済を導入し、外部API連携・Webhook・契約状態の管理を設計・実装',
-        'Googleログイン、日本語・英語のUI',
-        'GitHub Actionsによるテスト・ビルド・VPSへの自動デプロイ',
-      ],
-      tags: ['PHP', 'Laravel', 'OpenAI API', 'MySQL', 'Tailwind CSS', 'Stripe', 'Nginx', 'GitHub Actions'],
+      short: 'AIとの対話で悩みを言葉にする内省アプリ',
       links: [
         { label: 'デモ', href: 'https://zen.art-full-stack.com/ja' },
         { label: 'GitHub', href: 'https://github.com/TakahiroNago/zen-app' },
       ],
-      screenshot: {
-        src: '/images/projects/zen.png',
-        alt: 'ZENのトップページ。「いま、心にあることを聞かせてください」という見出しの下に、思いを入力する欄とヒントの選択肢、「禅師に相談する」ボタンが表示されている。',
-        width: 1440,
-        height: 900,
-      },
     },
   ],
-  experience: {
-    work: [
-      {
-        title: '外観検査装置の画像認識プログラムとUIの作成',
-        description:
-          'プリント基板のパターン印刷を印刷前後で比較して欠陥を検出する外観検査装置の、画像認識プログラムと操作UIを開発しました。課題の把握から機能検討・設計・実装・テストまでを担当しています。',
-        meta: {
-          period: '2025年5月〜2026年8月',
-          company: 'プリント基板検査装置メーカー（正社員）',
-          team: '4名（プログラム担当は本人のみ。他は機械・電気制御）',
-          role: 'ソフトウェア担当（設計〜実装を単独で担当）',
+  experience: [
+    {
+      org: 'プリント基板検査装置メーカー',
+      period: '正社員｜2025.05〜2026.08',
+      notes: ['プログラム担当は本人のみ（他は機械・電気制御）'],
+      highlights: [
+        {
+          title: '外観検査装置の画像認識プログラムとUI',
+          scale: '4名｜設計〜実装を単独で担当',
+          description:
+            '印刷前後の基板画像を比較して欠陥を検出。並列化・撮影途中からの部分処理・画像ファイルの読み書きのメモリ共有への置き換えで、処理時間を約14秒（C++）→約3秒（Rust）に短縮（概算）。',
+          tags: ['Tauri', 'Rust', 'TypeScript', 'React', 'C', 'C++', 'HALCON'],
         },
-        responsibilities: ['課題の把握', '機能検討', '設計', '実装', 'テスト'],
-        outcome:
-          '印刷前後の比較に用いる画像処理を、既存のC++実装の約14秒からRust実装で約3秒に短縮（概算）。処理の並列化、撮影途中からの部分的な処理の開始、画像ファイルの読み書きをメモリ共有に置き換えてI/Oを削減。',
-        tags: ['Tauri', 'Rust', 'TypeScript', 'React', 'C', 'C++', 'HALCON', 'Git', 'Windows'],
-      },
-      {
-        title: 'ロボットアーム制御パッケージの作成',
-        description:
-          'プリント基板を搬入カートから基板検査機へロードし、検査完了後にアンロードして、検査結果に基づいた位置へ移動させるロボットアーム制御システムを開発しました。基板検査機との連携部分も含めて設計・開発しています。',
-        meta: {
-          period: '2025年5月〜2026年8月',
-          company: 'プリント基板検査装置メーカー（正社員）',
-          team: '3名（プログラム担当は本人のみ。他は機械・電気制御）',
-          role: 'ソフトウェア担当（設計〜実装を単独で担当）',
+        {
+          title: 'ロボットアーム制御パッケージ',
+          scale: '3名｜設計〜実装を単独で担当',
+          description: '基板の搬入カートから検査機へのロード、検査後のアンロード、検査結果に応じた位置への移動までを制御。検査機との連携部分も設計。',
+          tags: ['Tauri', 'Rust', 'TypeScript', 'Vue.js', 'C', 'C++'],
         },
-        tags: ['Tauri', 'Rust', 'TypeScript', 'Vue.js', 'C', 'C++', 'Git', 'Windows'],
-      },
-      {
-        title: '操船システムの新規開発',
-        description:
-          '既存の自動操船装置をベースに、Dockerを利用した操船システムを新規開発しました。2024年3月の通信システムの概要設計から着手し、要件定義・設計・開発に加え、進捗管理、GitLabでのコードレビュー・マージを担当しました。Rocky Linux 9のOSインストールからDockerの導入まで開発環境の構築を一貫して行い、制御システム（C++）とUI（Python）を別のコンテナで管理する構成を設計しています。GitLabによるバージョン管理は組織内へ新規に導入しました。',
-        meta: {
-          period: '2024年3月〜2025年4月',
-          company: 'SES企業（船舶制御装置メーカーに常駐）',
-          team: '2名（要件定義・設計）〜6名（開発）',
-          role: 'リーダー',
+      ],
+    },
+    {
+      org: 'SES企業（船舶制御装置メーカーに常駐）',
+      period: '2023.10〜2025.04',
+      notes: [],
+      highlights: [
+        {
+          title: '操船システムの新規開発',
+          scale: 'リーダー｜2〜6名',
+          emphasizeScale: true,
+          period: '2024.03〜2025.04',
+          description:
+            '要件定義・設計・開発に加え、進捗管理、GitLabでのコードレビュー・マージを担当。制御（C++）とUI（Python）を別コンテナで管理する構成を設計し、GitLabによるバージョン管理を組織に新規導入。',
+          tags: ['C', 'C++', 'Python', 'Docker', 'Rocky Linux 9', 'GitLab'],
         },
-        responsibilities: ['要件定義', '設計', '実装', '進捗管理', 'コードレビュー'],
-        tags: ['C', 'C++', 'Python', 'Docker / Docker Compose', 'Rocky Linux 9', 'Ubuntu', 'Git / GitLab', 'Windows'],
-      },
-      {
-        title: '船舶ディーゼルエンジン性能測定システムの改修・新機能追加',
-        description: '既存の性能測定システム（Windowsデスクトップアプリ）の改修と新機能の追加を行いました。新機能の詳細設計・開発・テストを担当しています。',
-        meta: {
-          period: '2024年4月〜2024年11月',
-          company: 'SES企業（船舶制御装置メーカーに常駐）',
-          team: '3名',
-          role: 'メンバー',
-        },
-        tags: ['C++', 'C++ Builder', 'Windows'],
-      },
-      {
-        title: '自動船位保持システム（DPS）の改修・調整・実装',
-        description: '探査船向けに、既存の自動船位保持システムをベースとしたシステムの改修・調整・実装を行いました。開発・テストを担当しています。',
-        meta: {
-          period: '2024年2月〜2024年7月',
-          company: 'SES企業（船舶制御装置メーカーに常駐）',
-          team: '4名',
-          role: 'メンバー',
-        },
-        tags: ['C', 'C++', 'Cygwin', 'iTron OS'],
-      },
-      {
-        title: '自動操船装置の改修・調整・実装',
-        description: '民間フェリー向けに、既存の自動操船装置をベースとしたシステムの改修・調整・実装を行いました。開発・テストを担当しています。',
-        meta: {
-          period: '2024年3月〜2024年5月',
-          company: 'SES企業（船舶制御装置メーカーに常駐）',
-          team: '4名',
-          role: 'メンバー',
-        },
-        tags: ['C', 'C++', 'Cygwin', 'iTron OS'],
-      },
-      {
-        title: '操艦システムの改修・調整・実装',
-        description: '新造船向けに、既存の操艦（船操縦制御）システムをベースとしたシステムの改修・調整・実装を行いました。プロジェクト中盤から参加し、要件定義は担当していません。',
-        meta: {
-          period: '2023年10月〜2024年3月',
-          company: 'SES企業（船舶制御装置メーカーに常駐）',
-          team: '5名',
-          role: 'メンバー',
-        },
-        tags: ['C', 'C++', 'Cygwin', 'iTron OS', 'Visual Studio Code', 'Windows'],
-      },
-      {
-        title: '船体姿勢シミュレーターのVB.NETへのリプレイス・機能追加',
-        description: '積荷・荷下ろし時の船体姿勢シミュレーター（Windowsデスクトップアプリ）を、既存のC++実装からVB.NETへリプレイスし、機能を追加しました。プロジェクト中盤から参加し、詳細再設計・開発・テストを担当しています。',
-        meta: {
-          period: '2023年10月〜2024年2月',
-          company: 'SES企業（船舶制御装置メーカーに常駐）',
-          team: '4名',
-          role: 'メンバー',
-        },
-        tags: ['VB.NET', 'Visual Studio', 'Windows'],
-      },
-    ],
-    personal: [
-      {
-        title: 'AIを安全に業務へ組み込むWebアプリケーション開発',
-        description:
-          'AIが業務を分析して計画を提案し、入力と出力の検査、人間の承認、実行前の再検証、改ざんを検出できる監査ログを経て実行するプラットフォーム（SecureFlow AI）を、Laravel・PostgreSQL・Redis・Reactで開発し、MVPを完成させました。脅威モデルとセキュリティ設計を文書化し、セキュリティテスト・SAST・脆弱性スキャン・E2EテストをCIで必須化しています。AWSへの公開に向けたTerraformによる基盤定義に着手しています（未公開）。',
-        tags: ['Laravel', 'PostgreSQL', 'Redis', 'React', 'TypeScript', 'Playwright', 'Semgrep', 'Trivy', 'GitHub Actions'],
-      },
-      {
-        title: 'Rustによるライブラリ・CLI・HTTPサービス開発（v0.1.0をcrates.ioに公開）',
-        description:
-          'LLMアプリケーションの入力（個人情報・秘密情報・プロンプトインジェクション）と出力（JSON Schema・許可リスト・HTML）を検査するライブラリ（llm-inspect）を開発し、CLI・WebAssemblyデモ・axumのHTTPサービスから同じコアを利用しています。NFKC正規化と不可視文字の除去を行ったうえで照合し、検出位置を元のテキストに対応付けます。clippy・proptest・ファジング・Ubuntu / Windows / wasm32のCIを整え、crates.ioに公開しています（検出は完全ではないことを明記）。',
-        tags: ['Rust', 'regex', 'serde', 'jsonschema', 'clap', 'axum', 'WebAssembly', 'proptest', 'GitHub Actions'],
-      },
-      {
-        title: 'Webアプリケーション・API開発',
-        description:
-          'React / TypeScriptによるフロントエンド、Next.jsとPostgreSQLによるWebアプリケーション、Go REST APIとgRPCによるバックエンド、Go・MySQLによるゲームバックエンドAPI（並行テストをCIで実行）、Laravelによるサーバーサイドアプリケーションを開発しています。',
-        tags: ['React', 'TypeScript', 'Next.js', 'PostgreSQL', 'MySQL', 'Go', 'gRPC', 'Protocol Buffers', 'Laravel'],
-      },
-      {
-        title: 'C++エンジンのWeb活用',
-        description:
-          'C++ / OpenCVで実装した画像変換エンジンを、WebAssemblyとgRPCサーバーの両方から利用できるようにしています。',
-        tags: ['C++20', 'OpenCV', 'WebAssembly'],
-      },
-      {
-        title: 'インフラ・デプロイ・運用',
-        description:
-          'Docker Composeによる環境構築、AWS EC2・VPS・Cloudflare Pages・Vercelへのデプロイ、GitHub ActionsによるCI/CD、承認付きのDBマイグレーション、CloudWatch・SNSによる監視・通知、Prometheus・Grafanaによるメトリクスの可視化、本番DBの自動バックアップと復元検証に取り組んでいます。Terraformによる基盤の定義にも着手しています。',
-        tags: ['Docker', 'AWS', 'Nginx', 'GitHub Actions', 'Cloudflare Pages', 'Vercel', 'Prometheus', 'Grafana', 'Terraform'],
-      },
-    ],
-  },
+      ],
+      others: [
+        { period: '2024.04–2024.11', title: '船舶ディーゼルエンジン性能測定システムの改修・新機能追加（C++ Builder）' },
+        { period: '2024.02–2024.07', title: '探査船向け自動船位保持システム（DPS）の改修（C/C++・iTron OS）' },
+        { period: '2024.03–2024.05', title: '民間フェリー向け自動操船装置の改修（C/C++・iTron OS）' },
+        { period: '2023.10–2024.03', title: '新造船向け操艦システムの改修（C/C++・iTron OS）' },
+        { period: '2023.10–2024.02', title: '船体姿勢シミュレーターのVB.NETへのリプレイス・機能追加' },
+      ],
+    },
+  ],
   oss: [
     {
       repository: 'tauri-apps/tauri',
-      kind: 'PR',
-      title: 'MSIのアップグレード時に、削除されたデスクトップショートカットを再作成しないようにする修正',
-      description:
-        'Rust製のデスクトップアプリフレームワーク。MSIインストーラーでアップデートすると、ユーザーが削除したデスクトップショートカットが毎回作り直される問題を、WiXのテンプレートに条件を加えて修正しました（NSIS版と挙動を揃え、単体テストとWindows 11での手動確認を実施）。',
+      ref: 'PR #16506',
+      summary: 'MSIでのアップグレード時に、削除したデスクトップショートカットが再作成される問題を修正',
       href: 'https://github.com/tauri-apps/tauri/pull/16506',
-      status: 'マージ済み（2026年11月12日）',
+      badge: { label: 'マージ済み（2026.11.12）', tone: 'done' },
     },
     {
       repository: 'emilk/egui',
-      kind: 'PR',
-      title: 'システムフォントから全角英数字・CJK約物が欠落する問題の修正',
-      description: 'Rust製の即時モードGUIライブラリ。日本語環境で全角形（Fullwidth Forms）とCJKの句読点がシステムフォントから読み込まれない問題を修正しました。',
+      ref: 'PR #8849',
+      summary: 'システムフォントから全角英数字・CJK約物が欠落する問題を修正',
       href: 'https://github.com/emilk/egui/pull/8849',
-      status: '提出済み・レビュー中（2026年11月）',
+      badge: { label: 'レビュー中', tone: 'progress' },
     },
     {
       repository: 'tauri-apps/wry',
-      kind: 'PR',
-      title: 'Windowsで WM_SETFOCUS 時のWebViewへのフォーカス移動を遅延させる修正',
-      description: 'TauriのクロスプラットフォームWebViewライブラリ。Windowsでフォーカス取得時にWebViewへ即座にフォーカスを移すことで起きる不具合を修正しました。',
+      ref: 'PR #1924',
+      summary: 'WindowsでWM_SETFOCUS時のWebViewへのフォーカス移動を遅延させる修正',
       href: 'https://github.com/tauri-apps/wry/pull/1924',
-      status: '提出済み・レビュー中（2026年11月）',
+      badge: { label: 'レビュー中', tone: 'progress' },
     },
     {
       repository: 'MicrosoftEdge/WebView2Feedback',
-      kind: 'Issue',
-      title: '同一プロセス内の2つのWebView2ウィンドウを切り替えるとIMEの変換候補UIが画面左上へ外れる不具合の報告',
-      description: 'Tauri（WebView2）を用いたデスクトップアプリの開発中に特定した、IME表示位置の不具合の再現手順を報告しました。',
+      ref: 'Issue #5799',
+      summary: '2つのWebView2ウィンドウを切り替えるとIMEの変換候補UIが画面左上へ外れる不具合を報告',
       href: 'https://github.com/MicrosoftEdge/WebView2Feedback/issues/5799',
-      status: '報告済み・対応待ち（2026年11月）',
+      badge: { label: '報告済み・対応待ち', tone: 'neutral' },
     },
   ],
-  skills: {
-    tiers: [
-      {
-        id: 'work',
-        title: '実務で使用した',
-        description: '2023年10月〜2026年8月の実務案件で使用した技術です。',
-        items: [
-          'C',
-          'C++',
-          'Rust',
-          'Tauri',
-          'TypeScript',
-          'React',
-          'Vue.js',
-          'Python',
-          'VB.NET',
-          'C++ Builder',
-          'HALCON',
-          'OpenCV',
-          'Docker / Docker Compose',
-          'Linux（Rocky Linux 9、Ubuntu）',
-          'iTron OS',
-          'Cygwin',
-          'Git / GitLab',
-          'Windows',
-        ],
-      },
-      {
-        id: 'personal',
-        title: '個人開発・学習で使用した',
-        description: '公開している個人開発プロジェクトで使用した技術です。',
-        items: [
-          'Rust',
-          'C++20',
-          'TypeScript',
-          'React',
-          'Next.js',
-          'Python',
-          'Go',
-          'PHP / Laravel',
-          'Laravel Sanctum',
-          'Better Auth',
-          'OpenAI API',
-          'PostgreSQL',
-          'MySQL',
-          'Redis',
-          'Prisma',
-          'OpenCV',
-          'WebAssembly',
-          'Web Worker',
-          'gRPC / Protocol Buffers',
-          'Tailwind CSS',
-          'shadcn/ui',
-          'Pest',
-          'Larastan',
-          'Vitest',
-          'Playwright',
-          'axe-core',
-          'Semgrep',
-          'Trivy',
-          'gitleaks',
-          'Docker / Docker Compose',
-          'AWS（EC2、Systems Manager、CloudWatch、SNS）',
-          'Terraform',
-          'Prometheus',
-          'Grafana',
-          'Nginx',
-          'Cloudflare Pages',
-          'Vercel',
-          'Neon',
-          'GitHub Actions',
-        ],
-      },
-    ],
+  skills: [
+    {
+      title: '言語',
+      items: [
+        { name: 'C / C++', work: true },
+        { name: 'Rust', work: true },
+        { name: 'TypeScript', work: true },
+        { name: 'Python', work: true },
+        { name: 'VB.NET', work: true },
+        { name: 'Go' },
+        { name: 'PHP' },
+      ],
+    },
+    {
+      title: 'デスクトップ・組込み',
+      items: [
+        { name: 'Tauri', work: true },
+        { name: 'HALCON', work: true },
+        { name: 'OpenCV', work: true },
+        { name: 'iTron OS', work: true },
+        { name: 'C++ Builder', work: true },
+        { name: 'Cygwin', work: true },
+        { name: 'Windows', work: true },
+        { name: 'WebAssembly' },
+      ],
+    },
+    {
+      title: 'フロントエンド',
+      items: [
+        { name: 'React', work: true },
+        { name: 'Vue.js', work: true },
+        { name: 'Next.js' },
+        { name: 'Tailwind CSS' },
+        { name: 'shadcn/ui' },
+        { name: 'Web Worker' },
+      ],
+    },
+    {
+      title: 'バックエンド・DB',
+      items: [
+        { name: 'Laravel' },
+        { name: 'Laravel Sanctum' },
+        { name: 'Better Auth' },
+        { name: 'PostgreSQL' },
+        { name: 'MySQL' },
+        { name: 'Redis' },
+        { name: 'Prisma' },
+        { name: 'gRPC / Protocol Buffers' },
+        { name: 'OpenAI API' },
+      ],
+    },
+    {
+      title: 'インフラ・CI',
+      items: [
+        { name: 'Docker / Docker Compose', work: true },
+        { name: 'Linux（Rocky Linux 9、Ubuntu）', work: true },
+        { name: 'Git / GitLab', work: true },
+        { name: 'AWS（EC2、Systems Manager、CloudWatch、SNS）' },
+        { name: 'Terraform' },
+        { name: 'GitHub Actions' },
+        { name: 'Nginx' },
+        { name: 'Prometheus' },
+        { name: 'Grafana' },
+        { name: 'Cloudflare Pages' },
+        { name: 'Vercel' },
+        { name: 'Neon' },
+      ],
+    },
+    {
+      title: 'テスト・セキュリティ',
+      items: [
+        { name: 'Playwright' },
+        { name: 'Pest' },
+        { name: 'Larastan' },
+        { name: 'Vitest' },
+        { name: 'axe-core' },
+        { name: 'Semgrep' },
+        { name: 'Trivy' },
+        { name: 'gitleaks' },
+      ],
+    },
+  ],
+  cta: {
+    title: '個人開発のソースコードはGitHubで公開しています',
+    sub: 'github.com/TakahiroNago',
+    button: 'GitHubを見る',
   },
   footer: '名合 貴洋',
 }

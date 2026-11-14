@@ -1,69 +1,58 @@
-import { Experience } from './components/Experience/Experience.tsx'
-import { FeaturedProject } from './components/FeaturedProject/FeaturedProject.tsx'
+import { useEffect } from 'react'
 import { Footer } from './components/Footer/Footer.tsx'
 import { Header } from './components/Header/Header.tsx'
-import { Hero } from './components/Hero/Hero.tsx'
-import { Links } from './components/Links/Links.tsx'
-import { Oss } from './components/Oss/Oss.tsx'
-import { ProjectCard } from './components/ProjectCard/ProjectCard.tsx'
-import { Skills } from './components/Skills/Skills.tsx'
-import { Section } from './components/ui/Section.tsx'
 import { ja } from './content/ja.ts'
+import { HomePage } from './pages/HomePage.tsx'
+import { ProjectPage } from './pages/ProjectPage.tsx'
+import { Link } from './components/ui/Link.tsx'
+import { matchProject, usePath, useScrollOnNavigate } from './router.ts'
 import styles from './App.module.css'
 
 // 英語版を追加する場合は src/content/en.ts を作成し、ここで切り替える。
 const content = ja
+const SITE_ORIGIN = 'https://art-full-stack.com'
 
 function App() {
-  const { sections, labels, profile } = content
+  const { labels, profile } = content
+  const path = usePath()
+  const projectId = matchProject(path)
+  const index = projectId ? content.featuredProjects.findIndex((p) => p.id === projectId) : -1
+  const project = index >= 0 ? content.featuredProjects[index] : undefined
+  const next = project ? content.featuredProjects[(index + 1) % content.featuredProjects.length] : undefined
+  const isHome = path === '/'
+
+  useScrollOnNavigate(path)
+
+  // ページごとにタイトルと正規URLを切り替える
+  useEffect(() => {
+    document.title = project ? `${project.name} | ${profile.name}` : content.siteTitle
+    const canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]')
+    if (canonical) canonical.href = SITE_ORIGIN + (project ? path : '/')
+  }, [project, path, profile.name])
 
   return (
     <>
       <a className="skip-link" href="#main">
         {labels.skipToContent}
       </a>
-      <Header name={profile.name} nav={content.nav} github={profile.github} navLabel={labels.mainNav} />
+      <Header
+        name={profile.name}
+        nav={content.nav}
+        github={profile.github}
+        navLabel={labels.mainNav}
+        externalLabel={labels.externalLink}
+      />
       <main id="main">
-        <Hero profile={profile} externalLabel={labels.externalLink} projectsLabel={labels.viewProjects} />
-
-        <Section id="projects" title={sections.projects.title} lead={sections.projects.lead}>
-          <div className={styles.featuredList}>
-            {content.featuredProjects.map((project) => (
-              <FeaturedProject key={project.id} project={project} labels={labels} />
-            ))}
+        {isHome && <HomePage content={content} />}
+        {project && <ProjectPage key={project.id} project={project} next={next} labels={labels} />}
+        {!isHome && !project && (
+          <div className={`container ${styles.notFound}`}>
+            <p>{labels.notFound}</p>
+            <Link href="/">{profile.name}</Link>
           </div>
-
-          <h3 className={styles.subheading}>{sections.projects.otherTitle}</h3>
-          <div className={styles.projectGrid}>
-            {content.projects.map((project) => (
-              <ProjectCard key={project.id} project={project} labels={labels} />
-            ))}
-          </div>
-        </Section>
-
-        <Section id="experience" title={sections.experience.title} lead={sections.experience.lead} tone="subtle">
-          <Experience
-            work={content.experience.work}
-            personal={content.experience.personal}
-            workTitle={sections.experience.workTitle}
-            personalTitle={sections.experience.personalTitle}
-            labels={labels}
-          />
-        </Section>
-
-        <Section id="oss" title={sections.oss.title} lead={sections.oss.lead}>
-          <Oss items={content.oss} statusLabel={labels.status} externalLabel={labels.externalLink} />
-        </Section>
-
-        <Section id="skills" title={sections.skills.title} lead={sections.skills.lead} tone="subtle">
-          <Skills tiers={content.skills.tiers} />
-        </Section>
-
-        <Section id="links" title={sections.links.title} lead={sections.links.lead}>
-          <Links github={profile.github} externalLabel={labels.externalLink} />
-        </Section>
+        )}
       </main>
-      <Footer owner={content.footer} />
+      <Footer cta={content.cta} github={profile.github} owner={content.footer} labels={labels} />
     </>
   )
 }

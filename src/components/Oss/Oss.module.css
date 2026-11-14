@@ -1,74 +1,69 @@
 .list {
-  display: grid;
-  gap: 16px;
-}
-
-.item {
-  display: grid;
-  gap: 10px;
-  padding: 22px 20px;
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--color-border-card);
   border-radius: var(--radius);
-  background: var(--color-surface);
+  overflow: hidden;
 }
 
-.head {
-  display: flex;
-  flex-wrap: wrap;
+.list li + li {
+  border-top: 1px solid var(--color-divider);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    'repo badge'
+    'summary summary';
   align-items: center;
-  gap: 8px 10px;
+  gap: 8px 16px;
+  padding: 18px 20px;
+  color: var(--color-text);
+  text-decoration: none;
 }
 
-.kind {
-  padding: 2px 8px;
-  border-radius: 999px;
+.row:hover {
   background: var(--color-accent-soft);
-  color: var(--color-accent-strong);
-  font-size: var(--text-xs);
-  font-weight: 600;
-  letter-spacing: 0.02em;
+  color: var(--color-text);
 }
 
-.repository {
-  color: var(--color-text-muted);
-  font-family: var(--font-mono);
-  font-size: var(--text-sm);
+.row:hover .summary {
+  text-decoration: underline;
 }
 
-.title {
-  font-size: var(--text-base);
-}
-
-.description {
-  font-size: var(--text-sm);
-}
-
-.status {
+.repo {
+  grid-area: repo;
   display: flex;
-  flex-wrap: wrap;
-  gap: 2px 12px;
-  margin: 0;
-  font-size: var(--text-sm);
+  flex-direction: column;
+  min-width: 0;
 }
 
-.status dt {
-  color: var(--color-accent);
+.repoName {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
   font-weight: 500;
 }
 
-.status dd {
-  margin: 0;
+.ref {
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
 }
 
-.links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 4px;
+.summary {
+  grid-area: summary;
+  font-size: 0.875rem;
 }
 
-@media (min-width: 768px) {
-  .list {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+.badge {
+  grid-area: badge;
+  justify-self: end;
+}
+
+@media (min-width: 900px) {
+  .row {
+    grid-template-columns: 240px minmax(0, 1fr) auto;
+    grid-template-areas: 'repo summary badge';
+    gap: 20px;
+    padding: 20px 24px;
   }
 }
