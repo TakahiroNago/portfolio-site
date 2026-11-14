@@ -2,7 +2,7 @@ import type { SiteContent } from '../types.ts'
 
 // 掲載内容はすべてこのファイルで管理する。
 // 公開リポジトリのREADME・設定ファイルと、本人から提供された情報で確認できる内容のみを記載する。
-// 実務・個人開発・OSS は分けて記載し、スキルは「設計・実装できる／実務で使用／個人開発・学習で使用」の3区分で示す。
+// 実務・個人開発・OSS は分けて記載し、スキルは「①実務で使用／②個人開発・学習で使用」の2区分で示す。
 
 export const ja: SiteContent = {
   lang: 'ja',
@@ -18,7 +18,7 @@ export const ja: SiteContent = {
     role: 'ソフトウェアエンジニア',
     intro: [
       '実務では、C/C++による船舶制御システムの改修と、操船システムの新規開発（リーダー）を経て、Tauri（Rust）によるロボットアーム制御パッケージと外観検査装置ソフトウェアを、プログラム担当1名として設計から実装まで担当しました（2023年10月〜2026年8月）。',
-      '個人開発では、AIの提案を人間の承認と監査ログのもとで実行するセキュリティ管理プラットフォームをはじめ、Webアプリケーション・API・C++画像処理エンジンのWeb活用に取り組み、設計からデプロイ・運用まで一通り手がけています。Rustのライブラリ（egui、wry）には修正PRを提出し、LLMアプリケーション向けの入出力検査ライブラリ（llm-inspect）をRustで開発し、v0.1.0をcrates.ioに公開しています。',
+      '個人開発では、AIの提案を人間の承認と監査ログのもとで実行するセキュリティ管理プラットフォームをはじめ、Webアプリケーション・Go・MySQLによるゲームバックエンドAPI・C++画像処理エンジンのWeb活用に取り組み、設計からデプロイ・運用まで一通り手がけています。LLMアプリケーション向けの入出力検査ライブラリ（llm-inspect）をRustで開発してv0.1.0をcrates.ioに公開し、Tauri本体には修正PRがマージされ（2026年11月）、Rustのライブラリ（egui、wry）にも修正PRを提出しています。',
     ],
     portrait: {
       src: '/images/face.webp',
@@ -42,11 +42,11 @@ export const ja: SiteContent = {
     },
     oss: {
       title: 'OSS活動',
-      lead: '業務や個人開発で遭遇した不具合を、原因を特定して上流へ報告・修正しています。いずれも2026年11月時点でレビュー中です。',
+      lead: '業務や個人開発で遭遇した不具合を、原因を特定して上流へ報告・修正しています。tauri-apps/tauri への修正はマージされ、ほかは2026年11月時点でレビュー中・対応待ちです。',
     },
     skills: {
       title: 'スキル',
-      lead: '「自力で設計・実装できる」「実務で使用した」「個人開発・学習で使用した」の3つに分けて記載しています。1つの技術が複数の区分に入ることがあります。',
+      lead: '「実務で使用した」「個人開発・学習で使用した」の2つに分けて記載しています。1つの技術が両方に入ることがあります。',
     },
     links: {
       title: 'リンク',
@@ -75,7 +75,7 @@ export const ja: SiteContent = {
       name: 'SecureFlow AI',
       tagline: 'AIが業務を分析して計画を提案し、人間の承認を経て実行するセキュリティ管理プラットフォーム',
       summary:
-        '業務内容の依頼文からAIがワークフロー（実行計画）を提案し、入力と出力の検査、人間による承認、実行前の再検証、改ざんを検出できる監査ログを経て実行する、組織向けのWebアプリケーションです。AIにはツール実行・DB・外部通信の権限を与えず、提案のみを行わせる設計にしています。Laravel・PostgreSQL・Redis・Reactで実装し、要件定義・脅威モデル・設計書・テスト戦略を文書化しながら、工程ごとにテスト・静的解析・セキュリティスキャンをCIで通して開発を進め、要件定義で定めた15項目の完成条件を根拠付きで確認してMVPを完成させました。開発環境で動作し、AIは既定でモック、実行は模擬のみです（公開デモはありません。公開環境へ移行する前に満たす条件は設計書に整理しています）。',
+        '業務内容の依頼文からAIがワークフロー（実行計画）を提案し、入力と出力の検査、人間による承認、実行前の再検証、改ざんを検出できる監査ログを経て実行する、組織向けのWebアプリケーションです。AIにはツール実行・DB・外部通信の権限を与えず、提案のみを行わせる設計にしています。Laravel・PostgreSQL・Redis・Reactで実装し、要件定義・脅威モデル・設計書・テスト戦略を文書化しながら、工程ごとにテスト・静的解析・セキュリティスキャンをCIで通して開発を進め、要件定義で定めた15項目の完成条件を根拠付きで確認してMVPを完成させました。開発環境で動作し、AIは既定でモック、実行は模擬のみです（公開デモはありません。公開環境へ移行する前に満たす条件は設計書に整理しています）。2026年11月からAWSへの公開に向けた工程（本番用コンテナイメージ、TerraformによるVPC・ALB・EC2・CloudWatch・SNS・Budgetsの定義）に着手しています（未公開）。',
       tags: [
         'PHP',
         'Laravel',
@@ -97,6 +97,7 @@ export const ja: SiteContent = {
         'Semgrep',
         'Trivy',
         'gitleaks',
+        'Terraform',
         'GitHub Actions',
         'OpenAI API',
       ],
@@ -192,6 +193,190 @@ export const ja: SiteContent = {
           },
         ],
         sharedCore: { label: '共通の記録', value: '監査ログ（組織ごとのハッシュチェーン。DB関数からのみ追記、更新・削除はトリガーで禁止）' },
+      },
+    },
+    {
+      id: 'llm-inspect',
+      name: 'llm-inspect',
+      tagline: 'LLMアプリケーションの入力と出力を検査するRustライブラリ（v0.1.0をcrates.ioに公開）',
+      summary:
+        'LLMアプリケーションに渡す入力（個人情報・秘密情報・プロンプトインジェクション）と、LLMが返した出力（JSON Schema・許可リスト・HTML・サイズ）を検査するRustのライブラリです。同じコアをCLI・ブラウザ内のWebAssemblyデモ・axumのHTTPサービス（Docker）から利用できます。全角文字やゼロ幅文字による回避を防ぐため、正規化したうえで照合し、検出位置は元のテキストのバイト位置へ対応付けて返します。検出は完全ではなく、多層防御の一層として使う前提であることをREADMEとデモに明記しています。',
+      tags: [
+        'Rust',
+        'regex',
+        'serde',
+        'TOML',
+        'jsonschema',
+        'clap',
+        'axum',
+        'WebAssembly',
+        'wasm-bindgen',
+        'proptest',
+        'cargo-fuzz',
+        'Criterion',
+        'Docker',
+        'GitHub Actions',
+        'GitHub Pages',
+      ],
+      links: [
+        { label: 'デモ（ブラウザ内で検査）', href: 'https://takahironago.github.io/llm-inspect/' },
+        { label: 'GitHub', href: 'https://github.com/TakahiroNago/llm-inspect' },
+        { label: 'crates.io', href: 'https://crates.io/crates/llm-inspect' },
+        { label: 'docs.rs', href: 'https://docs.rs/llm-inspect' },
+      ],
+      screenshot: {
+        src: '/images/projects/llm-inspect.png',
+        alt: 'llm-inspectのブラウザデモ。メールアドレス・電話番号・カード番号を含む文章を検査し、判定「遮断（Block）」、検出したルールと深刻度・位置の表、検出箇所のハイライト、マスキング後の文章が表示されている。',
+        width: 1440,
+        height: 900,
+      },
+      featureGroups: [
+        {
+          title: '入力の検査',
+          items: [
+            '個人情報（メールアドレス・電話番号・Luhn検証付きのカード番号など）、秘密情報（AWS・GitHub・OpenAI形式のキー、PEM秘密鍵など）、プロンプトインジェクション（日本語・英語）を検出',
+            'ルールはTOMLで定義する正規表現。深刻度に応じて許可・警告・遮断を判定し、閾値と独自ルールはルールファイルで調整',
+            '検出箇所のマスキング。検査結果には一致した本文を含めない設計',
+          ],
+        },
+        {
+          title: '回避への対策',
+          items: [
+            '1文字ずつNFKC正規化し、ゼロ幅スペースや双方向制御文字などの不可視文字を除去してから照合',
+            '検出位置は元のテキストのバイト範囲（文字境界）へ対応付けて返し、正規化後にだけ一致した検出には印を付けて意図的な回避の兆候として扱える',
+            '日本語を含むテキストでも正規表現エンジンの高速な経路を使えるよう単語境界を調整（数KBのプロンプトで0.1ms程度）',
+          ],
+        },
+        {
+          title: '出力の検証',
+          items: [
+            'JSON Schemaによる検証（ネットワーク経由の参照解決は無効）',
+            'JSONポインタで指定した値の許可リスト（例：計画の各ステップの操作を read / notify に限定）',
+            'HTMLの混入とサイズ上限の検査',
+          ],
+        },
+        {
+          title: 'テスト・CI・公開',
+          items: [
+            'clippy（pedantic）の警告ゼロ、ユニットテストとproptestによるプロパティテスト、Criterionのベンチマーク',
+            'cargo-fuzzによるファジング（3ターゲット）を週1回と関連するPull Requestで実行',
+            'GitHub ActionsでUbuntu / Windowsのテスト、wasm32ビルド、MSRV（Rust 1.85）、HTTPサービスのDockerイメージの起動を確認し、デモをGitHub Pagesへ配信',
+            'v0.1.0をcrates.ioに公開（MIT / Apache-2.0）',
+          ],
+        },
+      ],
+      architecture: {
+        title: '入力の検査と出力の検証',
+        lead: '検査のロジックはコアクレートにまとめ、CLI・WebAssembly・HTTPサービスは入出力の変換だけを担当します。',
+        paths: [
+          {
+            title: '入力の検査',
+            description: '正規化したテキストで照合し、結果は元のテキストの位置で返します。',
+            steps: [
+              { label: '入力テキスト', detail: 'CLI / ブラウザ / HTTP' },
+              { label: '正規化', detail: 'NFKC・不可視文字の除去・位置の対応表' },
+              { label: 'ルール照合', detail: 'TOMLの正規表現・Luhn検証' },
+              { label: '判定', detail: '許可 / 警告 / 遮断' },
+              { label: 'レポート・マスキング', detail: '元のテキストのバイト位置' },
+            ],
+          },
+          {
+            title: '出力の検証',
+            description: 'LLMの出力を信頼せず、形式と値を検証してから使います。',
+            steps: [
+              { label: 'LLMの出力', detail: 'JSON' },
+              { label: 'JSON Schema', detail: '構造の検証' },
+              { label: '許可リスト', detail: 'JSONポインタで指定した値' },
+              { label: 'HTML・サイズ', detail: '混入と上限の検査' },
+              { label: '検証結果', detail: '違反の一覧' },
+            ],
+          },
+        ],
+        sharedCore: { label: '共通のコア', value: 'llm-inspect クレート（CLI・wasm-bindgen・axumの各クレートから利用）' },
+      },
+    },
+    {
+      id: 'mini-game',
+      name: 'Mini Game Backend',
+      tagline: '並行アクセスでもデータが壊れないことをテストで示した、Go製のゲームバックエンドAPIと運営管理画面',
+      summary:
+        'デイリー報酬・アイテム使用・ランキングなどのゲーム向けAPIをGo・MySQLで実装し、React製の運営管理画面を付けたものです。報酬の二重取得やアイテムの二重消費をアプリ側の事前チェックに頼らず、DBのUNIQUE制約と条件付きUPDATEで防ぎ、100並行の報酬取得などの並行テストを実際のMySQLに対してCIで毎回実行しています。Docker Composeで動作します（公開デモはありません）。',
+      tags: [
+        'Go',
+        'chi',
+        'MySQL',
+        'React',
+        'TypeScript',
+        'Vite',
+        'Tailwind CSS',
+        'TanStack Query',
+        'JWT',
+        'Prometheus',
+        'Grafana',
+        'Docker Compose',
+        'Nginx',
+        'GitHub Actions',
+      ],
+      links: [{ label: 'GitHub', href: 'https://github.com/TakahiroNago/mini-game-backend' }],
+      screenshot: {
+        src: '/images/projects/mini-game.png',
+        alt: 'Mini Game Backendの運営管理画面のダッシュボード。ユーザー数、有効なアイテム数、本日の登録・報酬受取・アイテム使用の件数と、ランキング上位のプレイヤーの一覧が表示されている。',
+        width: 1440,
+        height: 900,
+      },
+      featureGroups: [
+        {
+          title: 'データの整合性',
+          items: [
+            '報酬の二重取得はUNIQUE制約、アイテムの二重消費は条件付きUPDATE、冪等性は(player_id, idempotency_key)のUNIQUEで保証',
+            'プレイヤーを変更するすべてのトランザクションで最初にplayers行をFOR UPDATEし、ロック順序を統一（開発中に50並行で43件のデッドロックを再現し、ゼロに）',
+            '100並行の報酬取得・50並行のアイテム使用・20並行の同一キー再送を、DBの最終状態まで検証するテストをCIで毎回実行（-race付き）',
+          ],
+        },
+        {
+          title: '認証・セキュリティ',
+          items: [
+            'bcryptとJWT（algを固定し、jtiの失効表でログアウト）、管理APIのロール認可（playerは403）',
+            'API全体とログイン・登録の二段のレート制限、ボディサイズの上限、CORSの許可リスト、セキュリティヘッダ',
+            '不正な入力・SQLインジェクション・改ざんしたトークン・権限の組み合わせを検証するセキュリティテスト',
+          ],
+        },
+        {
+          title: '運用',
+          items: [
+            '管理操作の監査ログを、変更と同じトランザクションで記録',
+            'request_id付きのJSONログ、Prometheusのメトリクス（ルートを正規化してラベル数を固定）、プロビジョニング済みのGrafanaダッシュボード',
+            'GitHub Actionsの3ジョブ（Go・フロントエンド・全サービス起動の疎通確認）、graceful shutdown、本番設定の強制チェック',
+          ],
+        },
+      ],
+      architecture: {
+        title: 'リクエストの経路',
+        lead: '状態を変える処理は1つのトランザクションにまとめ、整合性はDBの制約で守ります。',
+        paths: [
+          {
+            title: 'ゲームAPI（プレイヤー）',
+            description: 'アイテム使用はIdempotency-Keyで再送しても1回だけ処理されます。',
+            steps: [
+              { label: 'クライアント', detail: 'Bearerトークン', via: 'HTTP / JSON' },
+              { label: 'ミドルウェア', detail: 'レート制限・ボディ上限・JWT検証' },
+              { label: 'Go API', detail: 'chi / 報酬・アイテム・ランキング' },
+              { label: 'トランザクション', detail: 'players行をFOR UPDATE → 条件付きUPDATE' },
+              { label: 'MySQL', detail: 'UNIQUE制約で二重処理を拒否' },
+            ],
+          },
+          {
+            title: '運営管理',
+            description: '管理画面はnginxから同一オリジンでAPIに中継します。',
+            steps: [
+              { label: '管理画面', detail: 'React / TanStack Query' },
+              { label: 'nginx', detail: '/api/ を同一オリジンで中継' },
+              { label: 'Go API', detail: 'adminロールのみ通過' },
+              { label: 'MySQL', detail: '変更と監査ログを同一トランザクションで記録' },
+            ],
+          },
+        ],
+        sharedCore: { label: '監視', value: 'Prometheusが/metricsを15秒ごとに取得し、GrafanaでRPS・p95・報酬取得の結果別件数などを表示' },
       },
     },
     {
@@ -470,6 +655,7 @@ export const ja: SiteContent = {
         'OpenAI APIとの連携と、応答方針を制御するプロンプト設計',
         '過去の相談のトピック分類・要約を活用した対話',
         '個人情報と思われる記述の検出と、伏せ字の提案',
+        'AI APIの予算を守るための段階的な利用上限と、ゲストの試用回数のIPアドレス単位の制限',
         'Stripe決済を導入し、外部API連携・Webhook・契約状態の管理を設計・実装',
         'Googleログイン、日本語・英語のUI',
         'GitHub Actionsによるテスト・ビルド・VPSへの自動デプロイ',
@@ -589,7 +775,7 @@ export const ja: SiteContent = {
       {
         title: 'AIを安全に業務へ組み込むWebアプリケーション開発',
         description:
-          'AIが業務を分析して計画を提案し、入力と出力の検査、人間の承認、実行前の再検証、改ざんを検出できる監査ログを経て実行するプラットフォーム（SecureFlow AI）を、Laravel・PostgreSQL・Redis・Reactで開発し、MVPを完成させました。脅威モデルとセキュリティ設計を文書化し、セキュリティテスト・SAST・脆弱性スキャン・E2EテストをCIで必須化しています。',
+          'AIが業務を分析して計画を提案し、入力と出力の検査、人間の承認、実行前の再検証、改ざんを検出できる監査ログを経て実行するプラットフォーム（SecureFlow AI）を、Laravel・PostgreSQL・Redis・Reactで開発し、MVPを完成させました。脅威モデルとセキュリティ設計を文書化し、セキュリティテスト・SAST・脆弱性スキャン・E2EテストをCIで必須化しています。AWSへの公開に向けたTerraformによる基盤定義に着手しています（未公開）。',
         tags: ['Laravel', 'PostgreSQL', 'Redis', 'React', 'TypeScript', 'Playwright', 'Semgrep', 'Trivy', 'GitHub Actions'],
       },
       {
@@ -601,8 +787,8 @@ export const ja: SiteContent = {
       {
         title: 'Webアプリケーション・API開発',
         description:
-          'React / TypeScriptによるフロントエンド、Next.jsとPostgreSQLによるWebアプリケーション、Go REST APIとgRPCによるバックエンド、Laravelによるサーバーサイドアプリケーションを開発しています。',
-        tags: ['React', 'TypeScript', 'Next.js', 'PostgreSQL', 'Go', 'gRPC', 'Protocol Buffers', 'Laravel'],
+          'React / TypeScriptによるフロントエンド、Next.jsとPostgreSQLによるWebアプリケーション、Go REST APIとgRPCによるバックエンド、Go・MySQLによるゲームバックエンドAPI（並行テストをCIで実行）、Laravelによるサーバーサイドアプリケーションを開発しています。',
+        tags: ['React', 'TypeScript', 'Next.js', 'PostgreSQL', 'MySQL', 'Go', 'gRPC', 'Protocol Buffers', 'Laravel'],
       },
       {
         title: 'C++エンジンのWeb活用',
@@ -613,12 +799,21 @@ export const ja: SiteContent = {
       {
         title: 'インフラ・デプロイ・運用',
         description:
-          'Docker Composeによる環境構築、AWS EC2・VPS・Cloudflare Pages・Vercelへのデプロイ、GitHub ActionsによるCI/CD、承認付きのDBマイグレーション、CloudWatch・SNSによる監視・通知、本番DBの自動バックアップと復元検証に取り組んでいます。',
-        tags: ['Docker', 'AWS', 'Nginx', 'GitHub Actions', 'Cloudflare Pages', 'Vercel'],
+          'Docker Composeによる環境構築、AWS EC2・VPS・Cloudflare Pages・Vercelへのデプロイ、GitHub ActionsによるCI/CD、承認付きのDBマイグレーション、CloudWatch・SNSによる監視・通知、Prometheus・Grafanaによるメトリクスの可視化、本番DBの自動バックアップと復元検証に取り組んでいます。Terraformによる基盤の定義にも着手しています。',
+        tags: ['Docker', 'AWS', 'Nginx', 'GitHub Actions', 'Cloudflare Pages', 'Vercel', 'Prometheus', 'Grafana', 'Terraform'],
       },
     ],
   },
   oss: [
+    {
+      repository: 'tauri-apps/tauri',
+      kind: 'PR',
+      title: 'MSIのアップグレード時に、削除されたデスクトップショートカットを再作成しないようにする修正',
+      description:
+        'Rust製のデスクトップアプリフレームワーク。MSIインストーラーでアップデートすると、ユーザーが削除したデスクトップショートカットが毎回作り直される問題を、WiXのテンプレートに条件を加えて修正しました（NSIS版と挙動を揃え、単体テストとWindows 11での手動確認を実施）。',
+      href: 'https://github.com/tauri-apps/tauri/pull/16506',
+      status: 'マージ済み（2026年11月12日）',
+    },
     {
       repository: 'emilk/egui',
       kind: 'PR',
@@ -646,35 +841,6 @@ export const ja: SiteContent = {
   ],
   skills: {
     tiers: [
-      {
-        id: 'design',
-        title: '自力で設計・実装できる',
-        description: '要件から設計・実装・テストまで、一人で進められる技術です。',
-        items: [
-          'C',
-          'C++',
-          'Rust',
-          'Tauri',
-          'TypeScript',
-          'React',
-          'Vue.js',
-          'Next.js',
-          'Python',
-          'Go',
-          'PHP / Laravel',
-          'VB.NET',
-          'HALCON',
-          'OpenCV',
-          'PostgreSQL',
-          'MySQL',
-          'Docker / Docker Compose',
-          'Linux（Rocky Linux 9、Ubuntu）',
-          'AWS',
-          'WebAssembly',
-          'gRPC / Protocol Buffers',
-          'Git / GitHub Actions / GitLab',
-        ],
-      },
       {
         id: 'work',
         title: '実務で使用した',
@@ -736,6 +902,9 @@ export const ja: SiteContent = {
           'gitleaks',
           'Docker / Docker Compose',
           'AWS（EC2、Systems Manager、CloudWatch、SNS）',
+          'Terraform',
+          'Prometheus',
+          'Grafana',
           'Nginx',
           'Cloudflare Pages',
           'Vercel',

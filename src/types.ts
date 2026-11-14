@@ -73,7 +73,7 @@ export type ExperienceItem = {
   tags: string[]
 }
 
-/** スキルの習熟区分（①自力で設計・実装できる ②実務で使用した ③個人開発・学習で使用した） */
+/** スキルの区分（①実務で使用した ②個人開発・学習で使用した） */
 export type SkillTier = {
   id: string
   title: string
