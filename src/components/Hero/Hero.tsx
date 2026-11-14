@@ -1,47 +1,62 @@
 import type { SiteContent } from '../../types.ts'
-import { LinkButton } from '../ui/LinkButton.tsx'
 import styles from './Hero.module.css'
 
 type Props = {
   profile: SiteContent['profile']
-  externalLabel: string
-  projectsLabel: string
+  labels: SiteContent['labels']
 }
 
-export function Hero({ profile, externalLabel, projectsLabel }: Props) {
+export function Hero({ profile, labels }: Props) {
   const { portrait } = profile
 
   return (
-    <section id="top" className={styles.hero} aria-labelledby="hero-name">
-      <div className={`container ${styles.inner}`}>
+    <section id="top" className="container" aria-labelledby="hero-name">
+      <div className={styles.hero}>
         <div className={styles.body}>
-          <p className={styles.role}>{profile.role}</p>
+          <p className={styles.eyebrow}>{profile.eyebrow}</p>
           <h1 id="hero-name" className={styles.name}>
             {profile.name}
           </h1>
-          <div className={styles.intro}>
-            {profile.intro.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
+          <p className={styles.lead}>
+            {profile.lead.map((line, i) => (
+              <span key={line}>
+                {line}
+                {i < profile.lead.length - 1 && <br />}
+              </span>
             ))}
-          </div>
+          </p>
+          <p className={styles.sub}>{profile.sub}</p>
           <div className={styles.actions}>
-            <a className={styles.primary} href="#projects">
-              {projectsLabel}
+            <a className="btn btn-primary" href="#projects">
+              {labels.viewProjects}
             </a>
-            <LinkButton href={profile.github.href} label={profile.github.label} externalLabel={externalLabel} />
+            <a className="btn btn-secondary" href="#experience">
+              {labels.viewExperience}
+            </a>
           </div>
         </div>
-        {/* ファーストビューに表示されるため遅延読み込みにはしない */}
-        <img
-          className={styles.portrait}
-          src={portrait.src}
-          alt={portrait.alt}
-          width={portrait.width}
-          height={portrait.height}
-          decoding="async"
-          fetchPriority="high"
-        />
+        <div className={styles.portraitWrap}>
+          {/* ファーストビューに表示されるため遅延読み込みにはしない */}
+          <img
+            className={styles.portrait}
+            src={portrait.src}
+            alt={portrait.alt}
+            width={portrait.width}
+            height={portrait.height}
+            decoding="async"
+            fetchPriority="high"
+          />
+        </div>
       </div>
+
+      <dl className={styles.stats}>
+        {profile.stats.map((stat) => (
+          <div key={stat.value} className={styles.stat}>
+            <dt className={styles.statLabel}>{stat.label}</dt>
+            <dd className={styles.statValue}>{stat.value}</dd>
+          </div>
+        ))}
+      </dl>
     </section>
   )
 }

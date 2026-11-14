@@ -4,6 +4,8 @@
 export type ExternalLink = {
   label: string
   href: string
+  /** カードなど狭い場所で使う短い表記（省略時は label） */
+  short?: string
 }
 
 export type Screenshot = {
@@ -13,9 +15,23 @@ export type Screenshot = {
   height: number
 }
 
+/** 数値などで示せる事実（ヒーローやテスト・CIの欄で使う） */
+export type Stat = {
+  value: string
+  label: string
+}
+
+/** 状態のバッジ。progress は作業中・レビュー中、done は公開済み・マージ済み、neutral はそれ以外 */
+export type Badge = {
+  label: string
+  tone: 'progress' | 'done' | 'neutral'
+}
+
 export type FeatureGroup = {
   title: string
   items: string[]
+  /** 見出しの下に並べる数値（テスト・CIの欄など） */
+  stats?: Stat[]
 }
 
 export type FlowStep = {
@@ -23,6 +39,8 @@ export type FlowStep = {
   detail?: string
   /** 次のステップへの接続の説明（例: "gRPC"） */
   via?: string
+  /** 図の中で目立たせるステップ（filled: 人間の判断、dashed: 信頼しない外部） */
+  emphasis?: 'filled' | 'dashed'
 }
 
 export type ArchitecturePath = {
@@ -31,20 +49,37 @@ export type ArchitecturePath = {
   steps: FlowStep[]
 }
 
-export type Project = {
-  id: string
-  name: string
-  tagline: string
-  summary: string
-  tags: string[]
-  links: ExternalLink[]
-  /** 実際の画面のスクリーンショットがある場合のみ指定する */
-  screenshot?: Screenshot
-  highlights?: string[]
-  note?: string
+export type StackRow = {
+  label: string
+  items: string[]
 }
 
-export type FeaturedProject = Project & {
+export type FeaturedProject = {
+  /** URL（/projects/<id>）にも使う */
+  id: string
+  name: string
+  /** 種別（例: "Webアプリ"） */
+  category: string
+  badge?: Badge
+  /** カードに載せる1文の説明 */
+  short: string
+  /** カードに載せる見どころ（2〜4行） */
+  points: string[]
+  /** カードに載せる主要な技術。残りの数は tags との差で表示する */
+  keyTags: string[]
+  tags: string[]
+  links: ExternalLink[]
+  /** トップの大きなカードに載せる処理の流れ（1件目のプロジェクトのみ） */
+  cardFlow?: { title: string; steps: FlowStep[] }
+  /** 詳細ページ */
+  tagline: string
+  summary: string
+  meta: { label: string; value: string }[]
+  /** 開発の背景。公開している要件定義などで確認できる場合のみ記載する */
+  background?: string[]
+  /** 設計の中心となる判断 */
+  keyDecision?: string
+  screenshot?: Screenshot
   featureGroups: FeatureGroup[]
   architecture: {
     title: string
@@ -53,87 +88,111 @@ export type FeaturedProject = Project & {
     /** 複数の経路で共通して使う部分（例: 変換コア、ドメインロジック） */
     sharedCore?: { label: string; value: string }
   }
+  stack: StackRow[]
 }
 
-/** 実務案件の期間・所属・規模・役割。個人開発の項目では省略する */
-export type ExperienceMeta = {
-  period: string
-  company?: string
-  team?: string
-  role?: string
+export type OtherProject = {
+  id: string
+  name: string
+  short: string
+  links: ExternalLink[]
 }
 
-export type ExperienceItem = {
+/** 実務の案件（カードで示すもの） */
+export type WorkHighlight = {
   title: string
+  /** 規模・役割（例: "4名｜設計〜実装を単独で担当"） */
+  scale: string
+  /** 役割を強調する場合（リーダーなど） */
+  emphasizeScale?: boolean
+  period?: string
   description: string
-  meta?: ExperienceMeta
-  responsibilities?: string[]
-  /** 数値などで示せる成果がある場合のみ記載する */
-  outcome?: string
   tags: string[]
 }
 
-/** スキルの区分（①実務で使用した ②個人開発・学習で使用した） */
-export type SkillTier = {
-  id: string
-  title: string
-  description: string
-  items: string[]
+/** 所属ごとのまとまり。所属は業種・形態で書き、会社名は載せない */
+export type WorkGroup = {
+  org: string
+  period: string
+  notes: string[]
+  highlights: WorkHighlight[]
+  /** 表で示す案件 */
+  others?: { period: string; title: string }[]
 }
 
 export type OssItem = {
-  /** 例: "emilk/egui" */
+  /** 例: "tauri-apps/tauri" */
   repository: string
-  /** PR か Issue か */
-  kind: 'PR' | 'Issue'
-  title: string
-  description: string
+  /** 例: "PR #16506" */
+  ref: string
+  summary: string
   href: string
-  status: string
+  badge: Badge
+}
+
+/** スキルの項目。work は実務で使用（個人開発でも使用したものを含む）、それ以外は個人開発・学習で使用 */
+export type SkillItem = {
+  name: string
+  work?: boolean
+}
+
+export type SkillCategory = {
+  title: string
+  items: SkillItem[]
+}
+
+export type SectionHeading = {
+  eyebrow: string
+  title: string
+  lead?: string
 }
 
 export type SiteContent = {
   lang: string
+  siteTitle: string
   nav: { id: string; label: string }[]
   profile: {
     name: string
-    role: string
-    intro: string[]
+    eyebrow: string
+    lead: string[]
+    sub: string
     portrait: Screenshot
     github: ExternalLink
+    stats: Stat[]
   }
   sections: {
-    projects: { title: string; lead: string; otherTitle: string }
-    experience: { title: string; lead: string; workTitle: string; personalTitle: string }
-    oss: { title: string; lead: string }
-    skills: { title: string; lead: string }
-    links: { title: string; lead: string }
+    projects: SectionHeading & { otherTitle: string }
+    experience: SectionHeading
+    oss: SectionHeading
+    skills: SectionHeading & { legendWork: string; legendPersonal: string }
   }
   labels: {
     skipToContent: string
     mainNav: string
     viewProjects: string
+    viewExperience: string
     featured: string
+    details: string
+    detailsLong: string
+    backToList: string
+    backToListShort: string
+    next: string
+    toc: string
+    overview: string
+    background: string
+    keyDecision: string
     architecture: string
     techStack: string
-    responsibilities: string
-    outcome: string
-    period: string
-    company: string
-    team: string
-    role: string
-    status: string
+    screenshot: string
+    notFound: string
     externalLink: string
+    toTop: string
   }
   featuredProjects: FeaturedProject[]
-  projects: Project[]
-  experience: {
-    work: ExperienceItem[]
-    personal: ExperienceItem[]
-  }
+  otherProjects: OtherProject[]
+  experience: WorkGroup[]
   oss: OssItem[]
-  skills: {
-    tiers: SkillTier[]
-  }
+  skills: SkillCategory[]
+  cta: { title: string; sub: string; button: string }
   footer: string
 }

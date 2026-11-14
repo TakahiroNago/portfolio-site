@@ -1,0 +1,51 @@
+/* 白地の帯のセクション（プロジェクト・OSS） */
+.band {
+  padding-block: var(--section-space);
+  border-block: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+/* 背景なしのセクション（経歴・スキル） */
+.plain {
+  padding-block: var(--section-space);
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 24px;
+}
+
+.others {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.othersTitle {
+  color: var(--color-text-muted);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.note {
+  margin-top: -12px;
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+}
+
+@media (min-width: 768px) {
+  .cardGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .stack {
+    gap: 40px;
+  }
+}
