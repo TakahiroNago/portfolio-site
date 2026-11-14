@@ -95,6 +95,8 @@ export type OtherProject = {
   id: string
   name: string
   short: string
+  /** 使用技術のタグ */
+  tags: string[]
   links: ExternalLink[]
 }
 
