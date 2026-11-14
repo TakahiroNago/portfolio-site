@@ -757,6 +757,7 @@ export const ja: SiteContent = {
       id: 'paintmix',
       name: 'PaintMix',
       short: '絵の具の混色をブラウザで確認できるツール',
+      tags: ['React', 'TypeScript', 'Vite', 'Mixbox', 'Vitest'],
       links: [
         { label: 'デモ', href: 'https://paint.art-full-stack.com/' },
         { label: 'GitHub', href: 'https://github.com/TakahiroNago/paint-mix-app' },
@@ -766,6 +767,7 @@ export const ja: SiteContent = {
       id: 'zen',
       name: 'ZEN — 心の庵',
       short: 'AIとの対話で悩みを言葉にする内省アプリ',
+      tags: ['Laravel', 'PHP', 'MySQL', 'Tailwind CSS', 'OpenAI API', 'Stripe'],
       links: [
         { label: 'デモ', href: 'https://zen.art-full-stack.com/ja' },
         { label: 'GitHub', href: 'https://github.com/TakahiroNago/zen-app' },

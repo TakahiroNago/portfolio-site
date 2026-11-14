@@ -115,6 +115,13 @@ export function OtherProjects({ projects, labels }: { projects: OtherProject[]; 
           <div className={styles.otherText}>
             <b>{project.name}</b>
             <span>{project.short}</span>
+            <ul className={`${styles.tags} ${styles.otherTags}`} aria-label={`${project.name}の使用技術`}>
+              {project.tags.map((tag) => (
+                <li key={tag} className="chip">
+                  {tag}
+                </li>
+              ))}
+            </ul>
           </div>
           <div className="textLinks">
             {project.links.map((link) => (
