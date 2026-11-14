@@ -20,7 +20,7 @@ export const ja: SiteContent = {
       '船舶制御システムの開発と、検査装置・ロボットアーム制御ソフトの設計〜実装を担当。',
       '個人開発では、「AIを安全に業務へ組み込む仕組み」に興味を持って開発しています。',
     ],
-    sub: '実務はC/C++で2年11か月（2023年10月〜2026年8月）、うちRust（Tauri）は1年4か月（2025年5月〜2026年8月）。Laravel・React・Go・Rustでの個人開発と、Rust製OSSへのコントリビュートにも取り組んでいます。',
+    sub: '実務はC/C++で2年11か月（2023年10月〜2026年8月）、Rust（Tauri）は1年4か月（2025年5月〜2026年8月）。Laravel・React・Go・Rustでの個人開発と、Rust製OSSへのコントリビュートにも取り組んでいます。',
     portrait: {
       src: '/images/face.webp',
       alt: '名合 貴洋のポートレートイラスト',
@@ -29,7 +29,7 @@ export const ja: SiteContent = {
     },
     github: { label: 'GitHub', href: 'https://github.com/TakahiroNago' },
     stats: [
-      { value: '2年11か月', label: 'C/C++での実務（2023.10〜2026.08）。うちRust（Tauri）は1年4か月' },
+      { value: '2年11か月', label: 'C/C++での実務（2023.10〜2026.08）。Rust（Tauri）は1年4か月' },
       { value: '約14秒 → 約3秒', label: '検査画像処理を短縮（C++からRustへ、概算）' },
       { value: 'Tauri 本体', label: 'OSSへのコード貢献、修正PRがマージ（2026年11月）' },
       { value: 'crates.io', label: 'Rustライブラリllm-inspect v0.1.0 を公開' },
