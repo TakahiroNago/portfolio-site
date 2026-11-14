@@ -6,7 +6,7 @@ type Props = {
   tiers: SkillTier[]
 }
 
-// 技術は「自力で設計・実装できる」「実務で使用した」「個人開発・学習で使用した」の3区分で表示する。
+// 技術は「実務で使用した」「個人開発・学習で使用した」の2区分で表示する（番号は職務経歴書の①②に対応）。
 export function Skills({ tiers }: Props) {
   return (
     <div className={styles.tiers}>
