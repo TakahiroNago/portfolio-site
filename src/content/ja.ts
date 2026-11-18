@@ -372,6 +372,132 @@ export const ja: SiteContent = {
       ],
     },
     {
+      id: 'payment-matching',
+      name: 'payment-matching-api',
+      category: 'バックエンドAPI',
+      badge: { label: 'ブラウザデモ公開', tone: 'done' },
+      short: '請求と銀行入金を突き合わせる入金消込のAPI。説明が1通りに決まるときだけ自動で消し込み、それ以外は候補を出して人が確定する。',
+      points: ['振込名義のゆれを正規化し、合算入金・手数料差引を4つの規則で判定', '操作を無作為な順に実行し、1回ごとにデータの整合性をSQLで検査するテスト'],
+      keyTags: ['Rust', 'axum', 'sqlx', 'PostgreSQL'],
+      tagline: '請求と銀行入金を突き合わせる入金消込のAPIサーバー。判定の規則はブラウザ内のデモ（WebAssembly）で試せます。',
+      summary:
+        '請求（売掛金）と銀行入金の明細を突き合わせる「入金消込」のAPIサーバーを、Rust（axum・sqlx）とPostgreSQLで実装したものです。振込名義のゆれ（半角カナ、法人格の略語）を正規化して取引先を特定し、1回の入金で複数の請求を支払う合算入金や、振込手数料を差し引いた入金を判定します。自動で消し込むのは説明が1通りに決まるときだけで、それ以外は候補を出して人が確定します。同じ明細を2回取り込んでも二重に計上せず、どの規則で、どの請求に、なぜ消し込んだかを入金ごとに記録します。データはすべて架空で、APIサーバーに画面はなく、認証は固定のトークン1つです。判定の規則は、WebAssemblyにしたブラウザ内デモで試せます（デモが扱うのは1回の取り込みの自動判定で、データベースを通る部分は含みません）。',
+      meta: [
+        { label: '役割', value: '個人開発' },
+        { label: '構成', value: 'APIサーバー（画面なし）＋ ブラウザ内デモ' },
+        { label: 'デモ', value: '1回の取り込みの自動判定（WebAssembly）' },
+        { label: '動作', value: 'Docker Compose（MIT）' },
+      ],
+      keyDecision:
+        '間違った請求を消し込むほうが、人の確認待ちになるより害が大きいと考え、自動で確定するのは説明が1通りに決まるときだけにしています。同額の請求が2件ある、組み合わせが2通りある、といった場合は候補にとどめ、手数料の差引と名義不明は1通りでも人が確定します。名義の照合も完全一致だけで、あいまい一致はしません。',
+      tags: [
+        'Rust',
+        'axum',
+        'sqlx',
+        'tokio',
+        'PostgreSQL',
+        'serde',
+        'WebAssembly',
+        'wasm-bindgen',
+        'proptest',
+        'cargo-deny',
+        'Docker Compose',
+        'GitHub Actions',
+        'GitHub Pages',
+      ],
+      links: [
+        { label: 'デモ（ブラウザ内で判定）', short: 'デモ', href: 'https://takahironago.github.io/payment-matching-api/' },
+        { label: 'GitHub', href: 'https://github.com/TakahiroNago/payment-matching-api' },
+      ],
+      screenshot: {
+        src: '/images/projects/payment-matching.png',
+        alt: 'payment-matching-apiのブラウザ内デモ。入金4件の判定結果として「自動確定1件、候補2件、未消込1件」と表示され、1行目は規則R2で自動確定、2行目は手数料440円を差し引いた入金として規則R3の候補、3行目は名義が未登録のため規則R4の候補になり、それぞれの理由が文章で示されている。',
+        width: 1440,
+        height: 900,
+      },
+      featureGroups: [
+        {
+          title: '自動突合',
+          items: [
+            '振込名義を正規化して取引先を特定（半角カナを全角に、「ｶ)」などの法人格と空白を除去）。表記のゆれは別名の登録で吸収し、候補の確定時に名義を覚えさせることもできる',
+            '4つの規則を上から順に評価：同額の請求（R1）、複数の請求の合計（R2）、振込手数料を差し引いた金額（R3）、名義不明で金額だけ一致（R4）',
+            '自動で確定するのは説明が1通りのときだけ。判定はDBに触れない純粋関数で、この性質を総当たりとの比較でプロパティテスト',
+            'どの規則で、どの請求に、なぜ消し込んだか（または消し込めなかったか）を入金ごとに記録',
+          ],
+        },
+        {
+          title: 'データの整合性',
+          items: [
+            '1件の入金に有効な消込は1つまで（部分一意インデックス）。1件の請求は1回しか消し込めない（条件付きUPDATEの更新行数を検査し、足りなければ409）',
+            '取り込みはIdempotency-Keyと内容のハッシュで冪等にし、途中で失敗すると何も残らない。別のキーでも同じ内容のバッチは拒否',
+            '消込の状態を変える処理はadvisory lockで直列に実行。ロックを待つのは5秒までで、超えたら何も書き込まずに503を返す',
+            '請求が消し込まれると、同じ請求を含む他の入金の候補は自動で取消になり、理由が履歴に残る',
+          ],
+        },
+        {
+          title: '人による確定と訂正',
+          items: [
+            '候補の確定・却下、手動消込、確定済みの消込の取消。取り消した消込は理由（5種類）と一緒に履歴として残す',
+            '別名や請求を後から登録した場合などに、未消込の入金を判定し直す再判定',
+            '登録の間違いをAPIで訂正（間違った別名の削除、請求の無効化）',
+          ],
+        },
+        {
+          title: 'テスト・CI',
+          items: [
+            '単体・プロパティテスト37件と、実際のPostgreSQLに対する結合テスト41件（テストごとに専用のデータベース）',
+            '取り込み・確定・取消・手動消込・再判定など9種類の操作をシードから決めた順に400回実行し、1回ごとに入金・消込・請求の間の規則（7つ）をSQLで検査。検査自体も、データをわざと壊して検出できることを確認',
+            'ブラウザ内デモがサーバーと同じ判定をすることを、無作為に作った60通りの取り込みで比較',
+            'SQLはsqlxのマクロでコンパイル時に検査し、CIでスキーマとの一致を確認',
+            'GitHub Actionsでfmt、clippy（警告ゼロ）、テスト、wasm32ビルド、cargo-deny、Dockerイメージの起動を確認し、デモをGitHub Pagesへ配信',
+          ],
+        },
+      ],
+      architecture: {
+        title: '取り込みから消込まで',
+        lead: '名義の正規化と突合の規則はI/Oを持たないクレートに分け、APIサーバーとブラウザ内デモの両方から使います。',
+        paths: [
+          {
+            title: 'A. 取り込みと自動突合',
+            description: '1回の取り込みは1つのトランザクションで、全部成功するか何も残らないかのどちらかです。',
+            steps: [
+              { label: 'クライアント', detail: 'Bearerトークン・Idempotency-Key', via: 'HTTP / JSON' },
+              { label: 'axum', detail: '認証・入力検証・RFC 9457のエラー' },
+              { label: 'トランザクション', detail: 'advisory lockで直列化・重複の検査' },
+              { label: '突合の規則', detail: '名義の正規化・R1〜R4' },
+              { label: 'PostgreSQL', detail: '消込と判定の根拠を保存' },
+            ],
+          },
+          {
+            title: 'B. 人による確定',
+            description: '説明が1通りに決まらない入金は候補にとどめ、人が確定します。',
+            steps: [
+              { label: '候補', detail: '説明が複数・手数料差引・名義不明' },
+              { label: '人の判断', detail: '確定 / 却下 / 手動消込', emphasis: 'filled' },
+              { label: '整合性の検査', detail: '金額の一致・請求が未消込か' },
+              { label: 'PostgreSQL', detail: '請求を消込済みに。他の入金の候補は取消' },
+            ],
+          },
+          {
+            title: 'C. ブラウザ内デモ',
+            description: '1回の取り込みの自動判定を、サーバーなしで試せます。入力は送信されません。',
+            steps: [
+              { label: 'ページ', detail: '取引先・請求・入金を入力' },
+              { label: 'WebAssembly', detail: 'サーバーと同じ規則' },
+              { label: '判定と理由', detail: '自動確定 / 候補 / 未消込' },
+            ],
+          },
+        ],
+        sharedCore: { label: '共通のコア', value: 'domain クレート（名義の正規化と突合の規則。I/Oなし）を、APIサーバーとWebAssemblyのデモから利用' },
+      },
+      stack: [
+        { label: 'API', items: ['Rust', 'axum', 'sqlx', 'tokio', 'PostgreSQL'] },
+        { label: 'デモ', items: ['WebAssembly', 'wasm-bindgen'] },
+        { label: 'テスト', items: ['proptest', 'sqlx::test'] },
+        { label: 'インフラ・CI', items: ['Docker Compose', 'GitHub Actions', 'GitHub Pages', 'cargo-deny'] },
+      ],
+    },
+    {
       id: 'mini-game',
       name: 'Mini Game Backend',
       category: 'バックエンドAPI',
@@ -907,6 +1033,7 @@ export const ja: SiteContent = {
         { name: 'Laravel' },
         { name: 'Laravel Sanctum' },
         { name: 'Better Auth' },
+        { name: 'axum' },
         { name: 'PostgreSQL' },
         { name: 'MySQL' },
         { name: 'Redis' },
