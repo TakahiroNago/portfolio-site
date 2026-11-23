@@ -31,7 +31,7 @@ export const ja: SiteContent = {
     stats: [
       { value: '2年11か月', label: 'C/C++での実務（2023.10〜2026.08）。Rust（Tauri）は1年4か月' },
       { value: '約14秒 → 約3秒', label: '検査画像処理を短縮（C++からRustへ、概算）' },
-      { value: 'Tauri 本体', label: 'OSSへのコード貢献、修正PRがマージ（2026年11月）' },
+      { value: 'Tauri・wry', label: 'OSSへのコード貢献、修正PRが各1件マージ（2026年11月）' },
       { value: 'crates.io', label: 'Rustライブラリllm-inspect v0.1.0 を公開' },
     ],
   },
@@ -967,6 +967,13 @@ export const ja: SiteContent = {
       summary: 'MSIでのアップグレード時に、削除したデスクトップショートカットが再作成される問題を修正',
       href: 'https://github.com/tauri-apps/tauri/pull/16506',
       badge: { label: 'マージ済み（2026.11.12）', tone: 'done' },
+    },
+    {
+      repository: 'tauri-apps/wry',
+      ref: 'PR #1935',
+      summary: 'WindowsでWebViewを閉じてもドロップターゲットの登録が解除されず、ドラッグ＆ドロップのハンドラーが解放されない問題を修正',
+      href: 'https://github.com/tauri-apps/wry/pull/1935',
+      badge: { label: 'マージ済み（2026.11.23）', tone: 'done' },
     },
     {
       repository: 'emilk/egui',
