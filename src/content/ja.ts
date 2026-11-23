@@ -31,7 +31,7 @@ export const ja: SiteContent = {
     stats: [
       { value: '2年11か月', label: 'C/C++での実務（2023.10〜2026.08）。Rust（Tauri）は1年4か月' },
       { value: '約14秒 → 約3秒', label: '検査画像処理を短縮（C++からRustへ、概算）' },
-      { value: 'Tauri・wry', label: 'OSSへのコード貢献、修正PRが各1件マージ（2026年11月）' },
+      { value: 'Tauri・wry・egui', label: 'OSSへのコード貢献、修正PRが各1件マージ（2026年11月）' },
       { value: 'crates.io', label: 'Rustライブラリllm-inspect v0.1.0 を公開' },
     ],
   },
@@ -980,7 +980,7 @@ export const ja: SiteContent = {
       ref: 'PR #8849',
       summary: 'システムフォントから全角英数字・CJK約物が欠落する問題を修正',
       href: 'https://github.com/emilk/egui/pull/8849',
-      badge: { label: 'レビュー中', tone: 'progress' },
+      badge: { label: 'マージ済み（2026.11.23）', tone: 'done' },
     },
     {
       repository: 'tauri-apps/wry',
