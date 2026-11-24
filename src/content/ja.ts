@@ -984,6 +984,13 @@ export const ja: SiteContent = {
     },
     {
       repository: 'tauri-apps/wry',
+      ref: 'PR #1952',
+      summary: 'set_bounds / bounds の座標の扱いをmacOSとLinuxについて実測し、APIドキュメントに追記',
+      href: 'https://github.com/tauri-apps/wry/pull/1952',
+      badge: { label: 'マージ済み（2026.11.24）', tone: 'done' },
+    },
+    {
+      repository: 'tauri-apps/wry',
       ref: 'PR #1924',
       summary: 'WindowsでWM_SETFOCUS時のWebViewへのフォーカス移動を遅延させる修正',
       href: 'https://github.com/tauri-apps/wry/pull/1924',
