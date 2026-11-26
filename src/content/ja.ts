@@ -501,16 +501,17 @@ export const ja: SiteContent = {
       id: 'mini-game',
       name: 'Mini Game Backend',
       category: 'バックエンドAPI',
-      short: '並行アクセスでもデータが壊れないことをテストで示した、Go製ゲームAPIと運営管理画面。',
+      badge: { label: 'デモ公開中', tone: 'done' },
+      short: '並行アクセスでもデータが壊れないことをテストで示した、Go製ゲームAPIと運営管理画面。登録せずにデモを試せます。',
       points: ['UNIQUE制約と条件付きUPDATEで二重取得・二重消費を防止', '100並行の報酬取得テストを実MySQLに対してCIで実行'],
       keyTags: ['Go', 'MySQL', 'React', 'Docker Compose'],
       tagline: '並行アクセスでもデータが壊れないことをテストで示した、Go製のゲームバックエンドAPIと運営管理画面。',
       summary:
-        'デイリー報酬・アイテム使用・ランキングなどのゲーム向けAPIをGo・MySQLで実装し、React製の運営管理画面を付けたものです。報酬の二重取得やアイテムの二重消費をアプリ側の事前チェックに頼らず、DBのUNIQUE制約と条件付きUPDATEで防ぎ、100並行の報酬取得などの並行テストを実際のMySQLに対してCIで毎回実行しています。Docker Composeで動作します（公開デモはありません）。',
+        'デイリー報酬・アイテム使用・ランキングなどのゲーム向けAPIをGo・MySQLで実装し、React製の運営管理画面を付けたものです。報酬の二重取得やアイテムの二重消費をアプリ側の事前チェックに頼らず、DBのUNIQUE制約と条件付きUPDATEで防ぎ、100並行の報酬取得などの並行テストを実際のMySQLに対してCIで毎回実行しています。ローカルではDocker Composeで動作し、プレイヤー画面と運営管理画面の公開デモを登録せずに試せます（データは毎日4:00にリセットされます）。',
       meta: [
         { label: '役割', value: '個人開発' },
-        { label: '構成', value: 'Go API ＋ React製の運営管理画面' },
-        { label: '動作', value: 'Docker Compose（公開デモなし）' },
+        { label: '構成', value: 'Go API ＋ React製のプレイヤー画面・運営管理画面' },
+        { label: '公開', value: 'デモ公開中（登録せずに試せる、毎日リセット）' },
         { label: '並行テスト', value: 'CIで毎回、実MySQLに対して実行' },
       ],
       tags: [
@@ -529,7 +530,11 @@ export const ja: SiteContent = {
         'Nginx',
         'GitHub Actions',
       ],
-      links: [{ label: 'GitHub', href: 'https://github.com/TakahiroNago/mini-game-backend' }],
+      links: [
+        { label: 'デモ（プレイヤー画面・登録せずに試せます）', short: 'デモ', href: 'https://minigame.art-full-stack.com/' },
+        { label: '管理画面のデモ', short: '管理画面', href: 'https://minigame.art-full-stack.com/admin/' },
+        { label: 'GitHub', href: 'https://github.com/TakahiroNago/mini-game-backend' },
+      ],
       screenshot: {
         src: '/images/projects/mini-game.png',
         alt: 'Mini Game Backendの運営管理画面のダッシュボード。ユーザー数、有効なアイテム数、本日の登録・報酬受取・アイテム使用の件数と、ランキング上位のプレイヤーの一覧が表示されている。',
@@ -592,7 +597,7 @@ export const ja: SiteContent = {
       },
       stack: [
         { label: 'バックエンド', items: ['Go', 'chi', 'MySQL', 'JWT'] },
-        { label: '管理画面', items: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'TanStack Query'] },
+        { label: 'プレイヤー画面・管理画面', items: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'TanStack Query'] },
         { label: '監視', items: ['Prometheus', 'Grafana'] },
         { label: 'インフラ', items: ['Docker Compose', 'Nginx', 'GitHub Actions'] },
       ],
